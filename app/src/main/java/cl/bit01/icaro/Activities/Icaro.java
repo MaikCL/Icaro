@@ -2,7 +2,6 @@ package cl.bit01.icaro.Activities;
 
 // Proyect Created 28 Noviembre 2014
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -25,10 +25,8 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import cl.bit01.icaro.Engine.IcaroEngineLexer;
-import cl.bit01.icaro.Engine.IcaroEngineParser;
-import cl.bit01.icaro.Fragments.MainScreen;
 import cl.bit01.icaro.R;
+import io.fabric.sdk.android.Fabric;
 
 
 public class Icaro extends ActionBarActivity {
@@ -42,7 +40,7 @@ public class Icaro extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_icaro);
         initTextToSpeech();
 
@@ -65,9 +63,6 @@ public class Icaro extends ActionBarActivity {
             }
         });
 
-        Fragment mainView = new MainScreen();
-        mFragmentManager.beginTransaction().replace(R.id.fragmentMainIcaro, mainView).commit();
-
         buttonMic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +80,6 @@ public class Icaro extends ActionBarActivity {
         Intent googleVoice = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         googleVoice.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "es-CL");
         googleVoice.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH);
-        //googleVoice.putExtra(RecognizerIntent.EXTRA_PROMPT, R.string.mic_message);
         try {
             startActivityForResult(googleVoice, REQUEST_OK);
         } catch (Exception e) {
