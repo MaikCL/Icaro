@@ -41,5 +41,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.1.0@aar') {
         transitive = true;
     }
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    compile 'com.google.maps:google-maps-services:0.1.5'
     compile files('libs/antlr-runtime-4.5.jar')
 }

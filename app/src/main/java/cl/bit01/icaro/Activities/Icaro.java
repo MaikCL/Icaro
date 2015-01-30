@@ -69,8 +69,13 @@ public class Icaro extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 reconocimientoVoz();
+                //debugMode("que hora es");
             }
         });
+    }
+
+    private void debugMode(String query) {
+        ejecutarEngine(query);
     }
 
     private void initTextToSpeech() {

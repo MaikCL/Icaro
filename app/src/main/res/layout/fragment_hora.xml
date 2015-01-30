@@ -23,7 +23,6 @@
         android:layout_alignTop="@+id/clock_twice"
         android:layout_toEndOf="@+id/clock_twice"
         android:layout_toRightOf="@+id/clock_twice"
-        android:text="56"
         android:textColor="@color/primary"
         android:textSize="80sp" />
 
@@ -34,7 +33,6 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/clock_twice"
         android:layout_toStartOf="@+id/clock_twice"
-        android:text="12"
         android:textColor="@color/primaryDark2"
         android:textSize="95sp" />
 </RelativeLayout>
