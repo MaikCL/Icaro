@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="primary" type="color">#008080</item>
+    <item name="primaryDark" type="color">#007373</item>
+    <item name="primaryDark2" type="color">#005959</item>
+    <item name="colorAccent" type="color">#007373</item>
+    <item name="white" type="color">#ffffff</item>
+    <item name="black" type="color">#000000</item>
+
+</resources>
