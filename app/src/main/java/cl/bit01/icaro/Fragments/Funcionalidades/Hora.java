@@ -35,7 +35,6 @@ public class Hora extends Fragment {
         minutes = (TextView) view.findViewById(clock_minutes);
 
         setClock();
-        speak();
         return view;
     }
 

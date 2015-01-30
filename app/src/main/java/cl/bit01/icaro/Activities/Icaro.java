@@ -25,6 +25,8 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import cl.bit01.icaro.Engine.IcaroEngineLexer;
+import cl.bit01.icaro.Engine.IcaroEngineParser;
 import cl.bit01.icaro.R;
 import io.fabric.sdk.android.Fabric;
 

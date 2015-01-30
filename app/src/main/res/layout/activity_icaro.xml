@@ -36,15 +36,13 @@
         android:typeface="sans"
         android:visibility="gone" />
 
-    <fragment
+    <RelativeLayout
         android:id="@+id/fragmentMainIcaro"
-        android:name="cl.bit01.icaro.Fragments.MainScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/text_peticion"
         android:layout_centerHorizontal="true"
-        tools:ignore="MergeRootFrame"
-        tools:layout="@layout/fragment_icaro" />
+        android:background="@color/white" />
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/mic_button"
