@@ -2,6 +2,7 @@ package cl.bit01.icaro.Fragments.Funcionalidades;
 
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 import cl.bit01.icaro.ApiClient.ApiResponseHandler;
@@ -21,27 +21,30 @@ import cl.bit01.icaro.Utils.GPSTracker;
 import static cl.bit01.icaro.R.id.clock_minutes;
 
 public class Hora extends Fragment {
-    TextView hour;
-    TextView minutes;
-    Calendar calendar;
+    private String layoutMode;
+    private ProgressDialog progress;
     private GPSTracker gps;
 
+    private TextView hour;
+    private TextView minutes;
 
     public Hora() {
-        // Required empty public constructor
+        setLayoutMode("local_hour");
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = null;
 
-        View view = inflater.inflate(R.layout.fragment_hora, container, false);
-        hour = (TextView) view.findViewById(R.id.clock_hour);
-        minutes = (TextView) view.findViewById(clock_minutes);
+        if (getLayoutMode().equals("local_hour")) {
+            view = inflater.inflate(R.layout.fragment_hora, container, false);
+            hour = (TextView) view.findViewById(R.id.clock_hour);
+            minutes = (TextView) view.findViewById(clock_minutes);
 
-        gps = new GPSTracker(getActivity());
-        setClock();
+            gps = new GPSTracker(getActivity());
+            setClock();
+        }
         return view;
     }
 
@@ -53,12 +56,12 @@ public class Hora extends Fragment {
                 client.retrieveWorldTime(gps.getLatitude(), gps.getLongitude(), new ApiResponseHandler() {
                     @Override
                     public void onStart() {
-
+                        progress = ProgressDialog.show(getActivity(), "Obteniendo Informacion", "Espere por favor...", true);
                     }
 
                     @Override
                     public void onFinish() {
-
+                        progress.dismiss();
                     }
 
                     @Override
@@ -77,5 +80,13 @@ public class Hora extends Fragment {
         } catch (Exception e) {
             Log.e("API Error", Log.getStackTraceString(e));
         }
+    }
+
+    public String getLayoutMode() {
+        return this.layoutMode;
+    }
+
+    public void setLayoutMode(String layoutMode) {
+        this.layoutMode = layoutMode;
     }
 }
