@@ -1,13 +1,63 @@
-# Icaro
-Spanish Voice Assistant for Android Devices
+# Asistente de voz Icaro
 
-If you want Contribute in the development of the Icaro Engine interpreter. Send me an email to miguelo.zapata@gmail.com
+Icaro es un asistente de voz para dispositivos Android (Version 4 en adelante).
+Cuenta con una serie de funcionalidades descritas a continuacion junto con comandos de voz para ejecutarlos.
 
-If you want compile this proyect, you need an Api Key from http://www.worldweatheronline.com and write in a text file, this text file you need rename to "key_world_weather_online.txt" and put this file in the raw folder for the proyect Icaro.
+Este proyecto consta de dos partes:
+- La aplicacion Icaro para Android.
+- El interprete que se encarga de parsear los comandos de voz a ejecutar.
 
+> Para ayudar en el proyecto del interprete, enviame un [Mail].
+> Para compilar la aplicacion Android, el Engine viene incluido (sin su archivo fuente).
 
-Español:
-Este proyecto consta de 2 partes, la aplicacion Icaro, y el interprete.
-Si deseas ayudarme con el interprete (cuyo proyecto esta hecho en ANTLR), enviame un correo electronico a miguelo.zapata@gmail.com.
-Para contribuir en el proyecto Icaro y poder compilarlo, necesitas obtener una Api Key desde las diversas apis que nutren de informacion a la aplicacion.
-Para la funcionalidad de hora debes obtener una Api Key desde http://www.worldweatheronline.com y colocarla en un archivo de texto llamado "key_world_weather_online.txt". Finalmente situar este archivo en la carpeta "raw" (situada dentro de a carpeta "res" y crearla en caso de no existir.
+### Version
+1.0 Dev-0
+
+### Tech
+
+Estos son los elementos que se compone Icaro
+
+* [ANTLR] - Version 4.5
+* Android Studio - Puedes descargarlo desde [aca](https://developer.android.com/sdk/installing/studio.html).
+
+### Installation
+
+En una terminal
+
+```sh
+$ cd /path/to/directory/
+$ git clone git@github.com:Miguelost/Icaro.git
+```
+
+### Compilacion
+Para compilar y ejecutar el proyecto, hay que proveer a la aplicacion de una serie de claves.
+
+###### World Wheater Online
+- Para la funcionalidad hora, necesitas obtener una "API KEY" desde el servicio [World Weather Online] (http://www.worldweatheronline.com)
+- Obtenida la Api Key, esta debe ser escrita en un archivo llamado "key_world_weather_online.txt".
+- Finalmente dicho archivo debe incluirse en la carpeta ...res/raw del proyecto Android.
+
+### Development
+
+Si quieres ayudar en el desarrollo de Icaro, haz un branch y realiza pull request.
+
+### Funciones y Frases Actuales
+
+######Reloj
+- Cual es la hora
+- Dime la hora
+- Necesito la Hora
+- Dame la Hora
+- Dime la hora en Milan
+- Que hora es en Madrid
+- Que Hora es
+
+License
+----
+
+**Para que tener un Google Now, si podemos construir uno!**
+
+[ANTLR]:http://www.antlr.org/
+[@Miguelost]:http://twitter.com/Miguelost
+[Mail]:miguel.zapatae@gmail.com
+[Github]:https://github.com/Miguelost
