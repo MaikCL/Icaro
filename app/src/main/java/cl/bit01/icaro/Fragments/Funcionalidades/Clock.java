@@ -22,16 +22,16 @@ import cl.bit01.icaro.Utils.GPSTracker;
 
 import static cl.bit01.icaro.R.id.clock_minutes;
 
-public class Hora extends Fragment {
+public class Clock extends Fragment {
     private String layoutMode;
     private ProgressDialog progress;
     private GPSTracker gps;
 
-    private RelativeLayout layout_hour;
+    private RelativeLayout layout_clock;
     private TextView hour;
     private TextView minutes;
 
-    public Hora() {
+    public Clock() {
         setLayoutMode("local_hour");
     }
 
@@ -40,11 +40,11 @@ public class Hora extends Fragment {
         View view = null;
 
         if (getLayoutMode().equals("local_hour")) {
-            view = inflater.inflate(R.layout.fragment_hora, container, false);
-            layout_hour = (RelativeLayout) view.findViewById(R.id.layout_hora);
+            view = inflater.inflate(R.layout.fragment_clock, container, false);
+            layout_clock = (RelativeLayout) view.findViewById(R.id.layout_clock);
             hour = (TextView) view.findViewById(R.id.clock_hour);
             minutes = (TextView) view.findViewById(clock_minutes);
-            layout_hour.setVisibility(View.INVISIBLE);
+            layout_clock.setVisibility(View.INVISIBLE);
             gps = new GPSTracker(getActivity());
             setClock();
         }
@@ -60,14 +60,14 @@ public class Hora extends Fragment {
                     @Override
                     public void onStart() {
                         progress = new ProgressDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-                        progress.setTitle("Obteniendo informacion");
-                        progress.setMessage("Espere por favor...");
+                        progress.setTitle(gps.getString(R.string.get_data));
+                        progress.setMessage(gps.getString(R.string.wait_for_a_minute));
                         progress.show();
                     }
 
                     @Override
                     public void onFinish() {
-                        layout_hour.setVisibility(View.VISIBLE);
+                        layout_clock.setVisibility(View.VISIBLE);
                         progress.dismiss();
                     }
 

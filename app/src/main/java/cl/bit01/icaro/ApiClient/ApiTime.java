@@ -23,7 +23,6 @@ public class ApiTime {
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static String BASE_URL = "http://api.worldweatheronline.com/free/v1/tz.ashx?";
     private static Context mContext;
-    private static ApiTime mApiTime = null;
     private OkHttpClient httpClient = null;
     private String apiKey;
 
@@ -43,7 +42,6 @@ public class ApiTime {
                 .url(url)
                 .addHeader("X-Access-Token", apiKey)
                 .build();
-
 
         httpClient.newCall(request).enqueue(getInfoParse(handler));
     }
