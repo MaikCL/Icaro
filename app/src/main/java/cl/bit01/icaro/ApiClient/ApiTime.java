@@ -46,6 +46,18 @@ public class ApiTime {
         httpClient.newCall(request).enqueue(getInfoParse(handler));
     }
 
+    public void retrieveWorldTime(String city, ApiResponseHandler handler) throws IOException {
+        apiKey = ApiKeyReader.readApiKey(mContext, R.raw.key_world_weather_online);
+        String url = BASE_URL + "key=" + apiKey + "&q=" + city + "&format=json";
+        handler.onStart();
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("X-Access-Token", apiKey)
+                .build();
+
+        httpClient.newCall(request).enqueue(getInfoParse(handler));
+    }
+
     private JsonHttpResponseHandler getInfoParse(final ApiResponseHandler handler) {
         final Handler mainHandler = new Handler(Looper.getMainLooper());
         return new JsonHttpResponseHandler(handler) {
