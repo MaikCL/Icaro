@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class Hora extends Fragment {
     private ProgressDialog progress;
     private GPSTracker gps;
 
+    private RelativeLayout layout_hour;
     private TextView hour;
     private TextView minutes;
 
@@ -39,9 +41,10 @@ public class Hora extends Fragment {
 
         if (getLayoutMode().equals("local_hour")) {
             view = inflater.inflate(R.layout.fragment_hora, container, false);
+            layout_hour = (RelativeLayout) view.findViewById(R.id.layout_hora);
             hour = (TextView) view.findViewById(R.id.clock_hour);
             minutes = (TextView) view.findViewById(clock_minutes);
-
+            layout_hour.setVisibility(View.INVISIBLE);
             gps = new GPSTracker(getActivity());
             setClock();
         }
@@ -56,7 +59,7 @@ public class Hora extends Fragment {
                 client.retrieveWorldTime(gps.getLatitude(), gps.getLongitude(), new ApiResponseHandler() {
                     @Override
                     public void onStart() {
-                        progress = new ProgressDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                        progress = new ProgressDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
                         progress.setTitle("Obteniendo informacion");
                         progress.setMessage("Espere por favor...");
                         progress.show();
@@ -64,6 +67,7 @@ public class Hora extends Fragment {
 
                     @Override
                     public void onFinish() {
+                        layout_hour.setVisibility(View.VISIBLE);
                         progress.dismiss();
                     }
 
