@@ -1,6 +1,7 @@
 package cl.bit01.icaro.Fragments.Funcionalidades;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -33,8 +34,7 @@ public class Hora extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
 
         if (getLayoutMode().equals("local_hour")) {
@@ -56,7 +56,10 @@ public class Hora extends Fragment {
                 client.retrieveWorldTime(gps.getLatitude(), gps.getLongitude(), new ApiResponseHandler() {
                     @Override
                     public void onStart() {
-                        progress = ProgressDialog.show(getActivity(), "Obteniendo Informacion", "Espere por favor...", true);
+                        progress = new ProgressDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                        progress.setTitle("Obteniendo informacion");
+                        progress.setMessage("Espere por favor...");
+                        progress.show();
                     }
 
                     @Override

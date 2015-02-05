@@ -18,15 +18,10 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.melnykov.fab.FloatingActionButton;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import cl.bit01.icaro.Engine.IcaroEngineLexer;
-import cl.bit01.icaro.Engine.IcaroEngineParser;
 import cl.bit01.icaro.R;
 import io.fabric.sdk.android.Fabric;
 
@@ -99,7 +94,7 @@ public class Icaro extends ActionBarActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 	    /*
-         *  Request code para reconocedor de voz
+         *  Request code for speech recognizion
 	     */
         if (requestCode == REQUEST_OK && resultCode == RESULT_OK) {
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -115,8 +110,8 @@ public class Icaro extends ActionBarActivity {
         peticion = Normalizer.normalize(peticion, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
         Log.d("Icaro", "Frase Normalizada: " + peticion);
 
-        IcaroEngineLexer lexer = new IcaroEngineLexer(new ANTLRInputStream(peticion.toLowerCase(Español))); //locale español
-        IcaroEngineParser parser = new IcaroEngineParser(new CommonTokenStream(lexer));
-        parser.icaro(mFragmentManager);
+        //IcaroEngineLexer lexer = new IcaroEngineLexer(new ANTLRInputStream(peticion.toLowerCase(Español))); //locale español
+        //IcaroEngineParser parser = new IcaroEngineParser(new CommonTokenStream(lexer));
+        //parser.icaro(mFragmentManager);
     }
 }
