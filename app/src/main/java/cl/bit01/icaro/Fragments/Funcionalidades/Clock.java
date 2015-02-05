@@ -1,9 +1,7 @@
 package cl.bit01.icaro.Fragments.Funcionalidades;
 
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,11 +17,11 @@ import cl.bit01.icaro.ApiClient.ApiResponseHandler;
 import cl.bit01.icaro.ApiClient.ApiTime;
 import cl.bit01.icaro.R;
 import cl.bit01.icaro.Utils.GPSTracker;
+import cl.bit01.icaro.Utils.ProgressBar;
 
 import static cl.bit01.icaro.R.id.clock_minutes;
 
 public class Clock extends Fragment {
-    private ProgressDialog progress;
     private GPSTracker gps;
 
     private RelativeLayout layout_clock;
@@ -69,13 +67,13 @@ public class Clock extends Fragment {
             client.retrieveWorldTime(city, new ApiResponseHandler() {
                 @Override
                 public void onStart() {
-                    startLoadScreen();
+                    ProgressBar.showLoadProgressBar(getActivity());
                 }
 
                 @Override
                 public void onFinish() {
                     layout_clock.setVisibility(View.VISIBLE);
-                    progress.dismiss();
+                    ProgressBar.dismissLoadProgressBar();
                 }
 
                 @Override
@@ -104,13 +102,13 @@ public class Clock extends Fragment {
                 client.retrieveWorldTime(gps.getLatitude(), gps.getLongitude(), new ApiResponseHandler() {
                     @Override
                     public void onStart() {
-                        startLoadScreen();
+                        ProgressBar.showLoadProgressBar(getActivity());
                     }
 
                     @Override
                     public void onFinish() {
                         layout_clock.setVisibility(View.VISIBLE);
-                        progress.dismiss();
+                        ProgressBar.dismissLoadProgressBar();
                     }
 
                     @Override
@@ -130,12 +128,4 @@ public class Clock extends Fragment {
             Log.e("API Error", Log.getStackTraceString(e));
         }
     }
-
-    public void startLoadScreen() {
-        progress = new ProgressDialog(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-        progress.setTitle(getResources().getString(R.string.get_data));
-        progress.setMessage(getResources().getString(R.string.wait_for_a_minute));
-        progress.show();
-    }
-
 }
