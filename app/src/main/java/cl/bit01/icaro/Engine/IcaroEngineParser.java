@@ -330,7 +330,7 @@ public class IcaroEngineParser extends Parser {
                     clockFragment.setArguments(bundle);
 
                     mFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentMainIcaro, new Clock())
+                            .replace(R.id.fragmentMainIcaro, clockFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
 
