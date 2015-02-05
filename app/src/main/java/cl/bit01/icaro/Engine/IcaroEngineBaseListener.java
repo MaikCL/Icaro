@@ -55,6 +55,18 @@ public class IcaroEngineBaseListener implements IcaroEngineListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterClima(IcaroEngineParser.ClimaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClima(IcaroEngineParser.ClimaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterString(IcaroEngineParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
