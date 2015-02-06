@@ -5,6 +5,7 @@ package cl.bit01.icaro.Fragments.Funcionalidades;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,10 @@ public class Weather extends Fragment {
         Bundle bundle = this.getArguments();
         view = inflater.inflate(R.layout.fragment_weather, container, false);
 
-        if (!bundle.isEmpty()) {
+        Toolbar mToolbarCard = (Toolbar) view.findViewById(R.id.toolbar_weather);
+        mToolbarCard.setTitle("Temperatura");
+
+        if (bundle != null) {
             setWeather(bundle.getString("city"));
         } else {
             GPSTracker gps = new GPSTracker(getActivity());

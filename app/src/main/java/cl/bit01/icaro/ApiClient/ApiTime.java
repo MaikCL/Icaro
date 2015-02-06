@@ -1,4 +1,5 @@
-package cl.bit01.icaro.ApiClient;/*
+package cl.bit01.icaro.ApiClient;
+/*
  * Created by miguelost on 30-01-15.
  */
 
