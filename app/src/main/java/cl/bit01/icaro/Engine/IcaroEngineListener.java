@@ -40,6 +40,16 @@ public interface IcaroEngineListener extends ParseTreeListener {
 	 */
 	void exitReloj(IcaroEngineParser.RelojContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IcaroEngineParser#clima}.
+	 * @param ctx the parse tree
+	 */
+	void enterClima(IcaroEngineParser.ClimaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IcaroEngineParser#clima}.
+	 * @param ctx the parse tree
+	 */
+	void exitClima(IcaroEngineParser.ClimaContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IcaroEngineParser#string}.
 	 * @param ctx the parse tree
 	 */

@@ -1,4 +1,5 @@
-package cl.bit01.icaro.ApiClient;/*
+package cl.bit01.icaro.ApiClient;
+/*
  * Created by miguelost on 30-01-15.
  */
 
@@ -6,7 +7,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -20,7 +20,6 @@ import cl.bit01.icaro.R;
 import cl.bit01.icaro.Utils.ApiKeyReader;
 
 public class ApiTime {
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static String BASE_URL = "http://api.worldweatheronline.com/free/v1/tz.ashx?";
     private static Context mContext;
     private OkHttpClient httpClient = null;
