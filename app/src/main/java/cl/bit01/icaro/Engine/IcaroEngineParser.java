@@ -2,6 +2,11 @@
 
 package cl.bit01.icaro.Engine;
 
+    /*
+     *    Disclaimer: Interpreter for Spanish Language
+     *    Interprete de frases para idioma Español
+     */
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -11,14 +16,12 @@ import android.util.Log;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
-import cl.bit01.icaro.Fragments.Funcionalidades.Clock;
-import cl.bit01.icaro.Fragments.Funcionalidades.Weather;
+import cl.bit01.icaro.Fragments.Features.Clock;
+import cl.bit01.icaro.Fragments.Features.Location;
+import cl.bit01.icaro.Fragments.Features.Weather;
 import cl.bit01.icaro.R;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
@@ -29,20 +32,22 @@ public class IcaroEngineParser extends Parser {
     protected static final PredictionContextCache _sharedContextCache =
             new PredictionContextCache();
     public static final int
-            T__0=1, T__1=2, T__2=3, PETICION=4, RELOJ=5, CLIMA=6, INTERROGACION=7,
-            PREPOSICION=8, STRING=9, NUMEROS=10, WS=11;
+            T__0=1, T__1=2, T__2=3, PETICION=4, PREGUNTA=5, RELOJ=6, CLIMA=7, UBICACION=8,
+            INTERROGACION=9, PREPOSICION=10, ADJETIVO=11, STRING=12, NUMEROS=13, WS=14;
     public static final int
-            RULE_icaro = 0, RULE_funcion = 1, RULE_reloj = 2, RULE_clima = 3, RULE_string = 4;
+            RULE_icaro = 0, RULE_funcionalidad = 1, RULE_reloj = 2, RULE_clima = 3,
+            RULE_ubicacion_actual = 4, RULE_string = 5;
     public static final String[] ruleNames = {
-            "icaro", "funcion", "reloj", "clima", "string"
+            "icaro", "funcionalidad", "reloj", "clima", "ubicacion_actual", "string"
     };
 
     private static final String[] _LITERAL_NAMES = {
-            null, "'la'", "'es'", "'el'", null, "'hora'", null, "'que'"
+            null, "'la'", "'es'", "'el'", null, "'donde'", "'hora'", null, null, "'que'",
+            null, "'mi'"
     };
     private static final String[] _SYMBOLIC_NAMES = {
-            null, null, null, null, "PETICION", "RELOJ", "CLIMA", "INTERROGACION",
-            "PREPOSICION", "STRING", "NUMEROS", "WS"
+            null, null, null, null, "PETICION", "PREGUNTA", "RELOJ", "CLIMA", "UBICACION",
+            "INTERROGACION", "PREPOSICION", "ADJETIVO", "STRING", "NUMEROS", "WS"
     };
     public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -96,8 +101,8 @@ public class IcaroEngineParser extends Parser {
         _interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
     }
     public static class IcaroContext extends ParserRuleContext {
-        public FuncionContext funcion() {
-            return getRuleContext(FuncionContext.class,0);
+        public FuncionalidadContext funcionalidad() {
+            return getRuleContext(FuncionalidadContext.class,0);
         }
         public IcaroContext(ParserRuleContext parent, int invokingState) {
             super(parent, invokingState);
@@ -120,8 +125,8 @@ public class IcaroEngineParser extends Parser {
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(10);
-                funcion();
+                setState(12);
+                funcionalidad();
             }
         }
         catch (RecognitionException re) {
@@ -135,45 +140,55 @@ public class IcaroEngineParser extends Parser {
         return _localctx;
     }
 
-    public static class FuncionContext extends ParserRuleContext {
+    public static class FuncionalidadContext extends ParserRuleContext {
         public RelojContext reloj() {
             return getRuleContext(RelojContext.class,0);
         }
         public ClimaContext clima() {
             return getRuleContext(ClimaContext.class,0);
         }
-        public FuncionContext(ParserRuleContext parent, int invokingState) {
+        public Ubicacion_actualContext ubicacion_actual() {
+            return getRuleContext(Ubicacion_actualContext.class,0);
+        }
+        public FuncionalidadContext(ParserRuleContext parent, int invokingState) {
             super(parent, invokingState);
         }
-        @Override public int getRuleIndex() { return RULE_funcion; }
+        @Override public int getRuleIndex() { return RULE_funcionalidad; }
         @Override
         public void enterRule(ParseTreeListener listener) {
-            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).enterFuncion(this);
+            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).enterFuncionalidad(this);
         }
         @Override
         public void exitRule(ParseTreeListener listener) {
-            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).exitFuncion(this);
+            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).exitFuncionalidad(this);
         }
     }
 
-    public final FuncionContext funcion() throws RecognitionException {
-        FuncionContext _localctx = new FuncionContext(_ctx, getState());
-        enterRule(_localctx, 2, RULE_funcion);
+    public final FuncionalidadContext funcionalidad() throws RecognitionException {
+        FuncionalidadContext _localctx = new FuncionalidadContext(_ctx, getState());
+        enterRule(_localctx, 2, RULE_funcionalidad);
         try {
-            setState(14);
+            setState(17);
             switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
                 case 1:
                     enterOuterAlt(_localctx, 1);
                 {
-                    setState(12);
+                    setState(14);
                     reloj();
                 }
                 break;
                 case 2:
                     enterOuterAlt(_localctx, 2);
                 {
-                    setState(13);
+                    setState(15);
                     clima();
+                }
+                break;
+                case 3:
+                    enterOuterAlt(_localctx, 3);
+                {
+                    setState(16);
+                    ubicacion_actual();
                 }
                 break;
             }
@@ -216,24 +231,24 @@ public class IcaroEngineParser extends Parser {
         RelojContext _localctx = new RelojContext(_ctx, getState());
         enterRule(_localctx, 4, RULE_reloj);
         try {
-            setState(39);
+            setState(42);
             switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
                 case 1:
                     enterOuterAlt(_localctx, 1);
                 {
-                    setState(22);
+                    setState(25);
                     switch (_input.LA(1)) {
                         case PETICION:
                         {
                             {
                                 {
-                                    setState(16);
+                                    setState(19);
                                     match(PETICION);
                                 }
-                                setState(17);
+                                setState(20);
                                 match(T__0);
                                 {
-                                    setState(18);
+                                    setState(21);
                                     match(RELOJ);
                                 }
                             }
@@ -243,15 +258,15 @@ public class IcaroEngineParser extends Parser {
                         {
                             {
                                 {
-                                    setState(19);
+                                    setState(22);
                                     match(INTERROGACION);
                                 }
                                 {
-                                    setState(20);
+                                    setState(23);
                                     match(RELOJ);
                                 }
                                 {
-                                    setState(21);
+                                    setState(24);
                                     match(T__1);
                                 }
                             }
@@ -261,7 +276,7 @@ public class IcaroEngineParser extends Parser {
                             throw new NoViableAltException(this);
                     }
 
-                    Log.d("Icaro", "ENGINE - Funcion Hora Reconocida");
+                    Log.d("Icaro", "ENGINE - Funcionalidad Hora Reconocida");
                     Fragment clockFragment = new Clock();
 
                     Bundle bundle = new Bundle();
@@ -280,27 +295,27 @@ public class IcaroEngineParser extends Parser {
                 case 2:
                     enterOuterAlt(_localctx, 2);
                 {
-                    setState(35);
+                    setState(38);
                     switch (_input.LA(1)) {
                         case PETICION:
                         {
                             {
                                 {
-                                    setState(25);
+                                    setState(28);
                                     match(PETICION);
                                 }
-                                setState(26);
+                                setState(29);
                                 match(T__0);
                                 {
-                                    setState(27);
+                                    setState(30);
                                     match(RELOJ);
                                 }
                                 {
-                                    setState(28);
+                                    setState(31);
                                     match(PREPOSICION);
                                 }
                                 {
-                                    setState(29);
+                                    setState(32);
                                     ((RelojContext)_localctx).ciudad = string();
                                 }
                             }
@@ -310,23 +325,23 @@ public class IcaroEngineParser extends Parser {
                         {
                             {
                                 {
-                                    setState(30);
+                                    setState(33);
                                     match(INTERROGACION);
                                 }
                                 {
-                                    setState(31);
+                                    setState(34);
                                     match(RELOJ);
                                 }
                                 {
-                                    setState(32);
+                                    setState(35);
                                     match(T__1);
                                 }
                                 {
-                                    setState(33);
+                                    setState(36);
                                     match(PREPOSICION);
                                 }
                                 {
-                                    setState(34);
+                                    setState(37);
                                     ((RelojContext)_localctx).ciudad = string();
                                 }
                             }
@@ -336,7 +351,7 @@ public class IcaroEngineParser extends Parser {
                             throw new NoViableAltException(this);
                     }
 
-                    Log.d("Icaro","ENGINE - Funcion Hora Reconocida en Ciudad: "+(((RelojContext)_localctx).ciudad!=null?_input.getText(((RelojContext)_localctx).ciudad.start,((RelojContext)_localctx).ciudad.stop):null));
+                    Log.d("Icaro","ENGINE - Funcionalidad Hora Reconocida en Ciudad: "+(((RelojContext)_localctx).ciudad!=null?_input.getText(((RelojContext)_localctx).ciudad.start,((RelojContext)_localctx).ciudad.stop):null));
                     Fragment clockFragment = new Clock();
 
                     Bundle bundle = new Bundle();
@@ -392,24 +407,24 @@ public class IcaroEngineParser extends Parser {
         enterRule(_localctx, 6, RULE_clima);
         int _la;
         try {
-            setState(58);
+            setState(61);
             switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
                 case 1:
                     enterOuterAlt(_localctx, 1);
                 {
                     {
                         {
-                            setState(42);
+                            setState(45);
                             _la = _input.LA(1);
                             if (_la==PETICION) {
                                 {
-                                    setState(41);
+                                    setState(44);
                                     match(PETICION);
                                 }
                             }
 
                         }
-                        setState(44);
+                        setState(47);
                         _la = _input.LA(1);
                         if ( !(_la==T__0 || _la==T__2) ) {
                             _errHandler.recoverInline(this);
@@ -417,12 +432,12 @@ public class IcaroEngineParser extends Parser {
                             consume();
                         }
                         {
-                            setState(45);
+                            setState(48);
                             match(CLIMA);
                         }
                     }
 
-                    Log.d("Icaro","ENGINE - Funcion Clima Reconocida");
+                    Log.d("Icaro","ENGINE - Funcionalidad Clima Reconocida");
                     Fragment weatherFragment = new Weather();
 
                     mFragmentManager.beginTransaction()
@@ -437,17 +452,17 @@ public class IcaroEngineParser extends Parser {
                 {
                     {
                         {
-                            setState(49);
+                            setState(52);
                             _la = _input.LA(1);
                             if (_la==PETICION) {
                                 {
-                                    setState(48);
+                                    setState(51);
                                     match(PETICION);
                                 }
                             }
 
                         }
-                        setState(51);
+                        setState(54);
                         _la = _input.LA(1);
                         if ( !(_la==T__0 || _la==T__2) ) {
                             _errHandler.recoverInline(this);
@@ -455,20 +470,20 @@ public class IcaroEngineParser extends Parser {
                             consume();
                         }
                         {
-                            setState(52);
+                            setState(55);
                             match(CLIMA);
                         }
                         {
-                            setState(53);
+                            setState(56);
                             match(PREPOSICION);
                         }
                         {
-                            setState(54);
+                            setState(57);
                             ((ClimaContext)_localctx).ciudad = string();
                         }
                     }
 
-                    Log.d("Icaro","ENGINE - Funcion Clima Reconocida en Ciudad: "+(((ClimaContext)_localctx).ciudad!=null?_input.getText(((ClimaContext)_localctx).ciudad.start,((ClimaContext)_localctx).ciudad.stop):null));
+                    Log.d("Icaro","ENGINE - Funcionalidad Clima Reconocida en Ciudad: "+(((ClimaContext)_localctx).ciudad!=null?_input.getText(((ClimaContext)_localctx).ciudad.start,((ClimaContext)_localctx).ciudad.stop):null));
                     Fragment weatherFragment = new Weather();
 
                     Bundle bundle = new Bundle();
@@ -483,6 +498,89 @@ public class IcaroEngineParser extends Parser {
 
                 }
                 break;
+            }
+        }
+        catch (RecognitionException re) {
+            _localctx.exception = re;
+            _errHandler.reportError(this, re);
+            _errHandler.recover(this, re);
+        }
+        finally {
+            exitRule();
+        }
+        return _localctx;
+    }
+
+    public static class Ubicacion_actualContext extends ParserRuleContext {
+        public TerminalNode PETICION() { return getToken(IcaroEngineParser.PETICION, 0); }
+        public TerminalNode ADJETIVO() { return getToken(IcaroEngineParser.ADJETIVO, 0); }
+        public TerminalNode UBICACION() { return getToken(IcaroEngineParser.UBICACION, 0); }
+        public TerminalNode PREGUNTA() { return getToken(IcaroEngineParser.PREGUNTA, 0); }
+        public Ubicacion_actualContext(ParserRuleContext parent, int invokingState) {
+            super(parent, invokingState);
+        }
+        @Override public int getRuleIndex() { return RULE_ubicacion_actual; }
+        @Override
+        public void enterRule(ParseTreeListener listener) {
+            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).enterUbicacion_actual(this);
+        }
+        @Override
+        public void exitRule(ParseTreeListener listener) {
+            if ( listener instanceof IcaroEngineListener ) ((IcaroEngineListener)listener).exitUbicacion_actual(this);
+        }
+    }
+
+    public final Ubicacion_actualContext ubicacion_actual() throws RecognitionException {
+        Ubicacion_actualContext _localctx = new Ubicacion_actualContext(_ctx, getState());
+        enterRule(_localctx, 8, RULE_ubicacion_actual);
+        try {
+            enterOuterAlt(_localctx, 1);
+            {
+                setState(68);
+                switch (_input.LA(1)) {
+                    case PETICION:
+                    {
+                        {
+                            {
+                                setState(63);
+                                match(PETICION);
+                            }
+                            {
+                                setState(64);
+                                match(ADJETIVO);
+                            }
+                            {
+                                setState(65);
+                                match(UBICACION);
+                            }
+                        }
+                    }
+                    break;
+                    case PREGUNTA:
+                    {
+                        {
+                            {
+                                setState(66);
+                                match(PREGUNTA);
+                            }
+                            {
+                                setState(67);
+                                match(UBICACION);
+                            }
+                        }
+                    }
+                    break;
+                    default:
+                        throw new NoViableAltException(this);
+                }
+
+                Log.d("Icaro", "ENGINE - Funcionalidad Ubicacion Actual Reconocida");
+                Fragment locationFragment = new Location();
+
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentMainIcaro, locationFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
             }
         }
         catch (RecognitionException re) {
@@ -525,24 +623,24 @@ public class IcaroEngineParser extends Parser {
 
     public final StringContext string() throws RecognitionException {
         StringContext _localctx = new StringContext(_ctx, getState());
-        enterRule(_localctx, 8, RULE_string);
+        enterRule(_localctx, 10, RULE_string);
         int _la;
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(66);
+                setState(78);
                 _errHandler.sync(this);
                 _la = _input.LA(1);
                 do {
                     {
-                        setState(66);
-                        switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+                        setState(78);
+                        switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
                             case 1:
                             {
                                 {
-                                    setState(60);
+                                    setState(72);
                                     match(STRING);
-                                    setState(61);
+                                    setState(73);
                                     match(WS);
                                 }
                             }
@@ -550,7 +648,7 @@ public class IcaroEngineParser extends Parser {
                             case 2:
                             {
                                 {
-                                    setState(62);
+                                    setState(74);
                                     match(STRING);
                                 }
                             }
@@ -558,9 +656,9 @@ public class IcaroEngineParser extends Parser {
                             case 3:
                             {
                                 {
-                                    setState(63);
+                                    setState(75);
                                     match(NUMEROS);
-                                    setState(64);
+                                    setState(76);
                                     match(WS);
                                 }
                             }
@@ -568,14 +666,14 @@ public class IcaroEngineParser extends Parser {
                             case 4:
                             {
                                 {
-                                    setState(65);
+                                    setState(77);
                                     match(NUMEROS);
                                 }
                             }
                             break;
                         }
                     }
-                    setState(68);
+                    setState(80);
                     _errHandler.sync(this);
                     _la = _input.LA(1);
                 } while ( _la==STRING || _la==NUMEROS );
@@ -593,25 +691,28 @@ public class IcaroEngineParser extends Parser {
     }
 
     public static final String _serializedATN =
-            "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\rI\4\2\t\2\4\3\t"+
-                    "\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\5\3\21\n\3\3\4\3\4\3\4\3\4"+
-                    "\3\4\3\4\5\4\31\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4&\n"+
-                    "\4\3\4\3\4\5\4*\n\4\3\5\5\5-\n\5\3\5\3\5\3\5\3\5\3\5\5\5\64\n\5\3\5\3"+
-                    "\5\3\5\3\5\3\5\3\5\3\5\5\5=\n\5\3\6\3\6\3\6\3\6\3\6\3\6\6\6E\n\6\r\6\16"+
-                    "\6F\3\6\2\2\7\2\4\6\b\n\2\3\4\2\3\3\5\5N\2\f\3\2\2\2\4\20\3\2\2\2\6)\3"+
-                    "\2\2\2\b<\3\2\2\2\nD\3\2\2\2\f\r\5\4\3\2\r\3\3\2\2\2\16\21\5\6\4\2\17"+
-                    "\21\5\b\5\2\20\16\3\2\2\2\20\17\3\2\2\2\21\5\3\2\2\2\22\23\7\6\2\2\23"+
-                    "\24\7\3\2\2\24\31\7\7\2\2\25\26\7\t\2\2\26\27\7\7\2\2\27\31\7\4\2\2\30"+
-                    "\22\3\2\2\2\30\25\3\2\2\2\31\32\3\2\2\2\32*\b\4\1\2\33\34\7\6\2\2\34\35"+
-                    "\7\3\2\2\35\36\7\7\2\2\36\37\7\n\2\2\37&\5\n\6\2 !\7\t\2\2!\"\7\7\2\2"+
-                    "\"#\7\4\2\2#$\7\n\2\2$&\5\n\6\2%\33\3\2\2\2% \3\2\2\2&\'\3\2\2\2\'(\b"+
-                    "\4\1\2(*\3\2\2\2)\30\3\2\2\2)%\3\2\2\2*\7\3\2\2\2+-\7\6\2\2,+\3\2\2\2"+
-                    ",-\3\2\2\2-.\3\2\2\2./\t\2\2\2/\60\7\b\2\2\60\61\3\2\2\2\61=\b\5\1\2\62"+
-                    "\64\7\6\2\2\63\62\3\2\2\2\63\64\3\2\2\2\64\65\3\2\2\2\65\66\t\2\2\2\66"+
-                    "\67\7\b\2\2\678\7\n\2\289\5\n\6\29:\3\2\2\2:;\b\5\1\2;=\3\2\2\2<,\3\2"+
-                    "\2\2<\63\3\2\2\2=\t\3\2\2\2>?\7\13\2\2?E\7\r\2\2@E\7\13\2\2AB\7\f\2\2"+
-                    "BE\7\r\2\2CE\7\f\2\2D>\3\2\2\2D@\3\2\2\2DA\3\2\2\2DC\3\2\2\2EF\3\2\2\2"+
-                    "FD\3\2\2\2FG\3\2\2\2G\13\3\2\2\2\13\20\30%),\63<DF";
+            "\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20U\4\2\t\2\4\3\t"+
+                    "\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\3\3\3\3\3\5\3\24\n\3\3\4"+
+                    "\3\4\3\4\3\4\3\4\3\4\5\4\34\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
+                    "\4\3\4\5\4)\n\4\3\4\3\4\5\4-\n\4\3\5\5\5\60\n\5\3\5\3\5\3\5\3\5\3\5\5"+
+                    "\5\67\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5@\n\5\3\6\3\6\3\6\3\6\3\6\5\6"+
+                    "G\n\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\6\7Q\n\7\r\7\16\7R\3\7\2\2\b\2\4"+
+                    "\6\b\n\f\2\3\4\2\3\3\5\5[\2\16\3\2\2\2\4\23\3\2\2\2\6,\3\2\2\2\b?\3\2"+
+                    "\2\2\nF\3\2\2\2\fP\3\2\2\2\16\17\5\4\3\2\17\3\3\2\2\2\20\24\5\6\4\2\21"+
+                    "\24\5\b\5\2\22\24\5\n\6\2\23\20\3\2\2\2\23\21\3\2\2\2\23\22\3\2\2\2\24"+
+                    "\5\3\2\2\2\25\26\7\6\2\2\26\27\7\3\2\2\27\34\7\b\2\2\30\31\7\13\2\2\31"+
+                    "\32\7\b\2\2\32\34\7\4\2\2\33\25\3\2\2\2\33\30\3\2\2\2\34\35\3\2\2\2\35"+
+                    "-\b\4\1\2\36\37\7\6\2\2\37 \7\3\2\2 !\7\b\2\2!\"\7\f\2\2\")\5\f\7\2#$"+
+                    "\7\13\2\2$%\7\b\2\2%&\7\4\2\2&\'\7\f\2\2\')\5\f\7\2(\36\3\2\2\2(#\3\2"+
+                    "\2\2)*\3\2\2\2*+\b\4\1\2+-\3\2\2\2,\33\3\2\2\2,(\3\2\2\2-\7\3\2\2\2.\60"+
+                    "\7\6\2\2/.\3\2\2\2/\60\3\2\2\2\60\61\3\2\2\2\61\62\t\2\2\2\62\63\7\t\2"+
+                    "\2\63\64\3\2\2\2\64@\b\5\1\2\65\67\7\6\2\2\66\65\3\2\2\2\66\67\3\2\2\2"+
+                    "\678\3\2\2\289\t\2\2\29:\7\t\2\2:;\7\f\2\2;<\5\f\7\2<=\3\2\2\2=>\b\5\1"+
+                    "\2>@\3\2\2\2?/\3\2\2\2?\66\3\2\2\2@\t\3\2\2\2AB\7\6\2\2BC\7\r\2\2CG\7"+
+                    "\n\2\2DE\7\7\2\2EG\7\n\2\2FA\3\2\2\2FD\3\2\2\2GH\3\2\2\2HI\b\6\1\2I\13"+
+                    "\3\2\2\2JK\7\16\2\2KQ\7\20\2\2LQ\7\16\2\2MN\7\17\2\2NQ\7\20\2\2OQ\7\17"+
+                    "\2\2PJ\3\2\2\2PL\3\2\2\2PM\3\2\2\2PO\3\2\2\2QR\3\2\2\2RP\3\2\2\2RS\3\2"+
+                    "\2\2S\r\3\2\2\2\f\23\33(,/\66?FPR";
     public static final ATN _ATN =
             new ATNDeserializer().deserialize(_serializedATN.toCharArray());
     static {

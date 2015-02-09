@@ -1,4 +1,4 @@
-package cl.bit01.icaro.Fragments.Funcionalidades;
+package cl.bit01.icaro.Fragments.Features;
 
 
 import android.app.Fragment;
