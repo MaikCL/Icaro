@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -36,7 +35,7 @@ public class Weather extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = null;
+        View view;
         Bundle bundle = this.getArguments();
         view = inflater.inflate(R.layout.fragment_weather, container, false);
 
@@ -143,9 +142,7 @@ public class Weather extends Fragment {
 
         @Override
         public void onError() {
-            Log.d("Icaro Weather", "Get Data from API Error");
-            Toast.makeText(getActivity(), getActivity().getString(R.string.error_access_service),
-                    Toast.LENGTH_LONG).show();
+            Log.d("Icaro Weather", "Failed to access API Service");
         }
     }
 }
