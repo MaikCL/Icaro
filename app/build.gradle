@@ -47,5 +47,5 @@ dependencies {
         transitive = true;
     }
     compile 'com.squareup.okhttp:okhttp:2.2.0'
-    compile 'com.google.maps:google-maps-services:0.1.5'
+    compile 'com.google.android.gms:play-services-maps:6.5.87'
 }
