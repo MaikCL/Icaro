@@ -37,7 +37,7 @@ public class ApiWeather {
     }
 
     public void retrieveWeather(double latitude, double longitude, ApiResponseHandler handler) throws IOException {
-        apiKey = ApiKeyReader.readApiKey(mContext, R.raw.key_open_weather_map);
+        apiKey = mContext.getResources().getString(R.string.key_OpenWeatherMap);
         String url = BASE_URL + "lat=" + latitude + "&lon=" + longitude + URL_OPTIONS + "&appid=" + apiKey;
         handler.onStart();
         Request request = new Request.Builder()

@@ -34,7 +34,7 @@ public class ApiTime {
     }
 
     public void retrieveWorldTime(double latitude, double longitude, ApiResponseHandler handler) throws IOException {
-        apiKey = ApiKeyReader.readApiKey(mContext, R.raw.key_world_weather_online);
+        apiKey = mContext.getResources().getString(R.string.key_WorldWeatherOnline);
         String url = BASE_URL + "key=" + apiKey + "&q=" + latitude + "," + longitude + "&format=json";
         handler.onStart();
         Request request = new Request.Builder()
