@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import cl.bit01.icaro.R;
-import cl.bit01.icaro.Utils.ApiKeyReader;
 
 public class ApiTime {
     private static String BASE_URL = "http://api.worldweatheronline.com/free/v1/tz.ashx?";
@@ -46,7 +45,7 @@ public class ApiTime {
     }
 
     public void retrieveWorldTime(String city, ApiResponseHandler handler) throws IOException {
-        apiKey = ApiKeyReader.readApiKey(mContext, R.raw.key_world_weather_online);
+        apiKey = mContext.getResources().getString(R.string.key_WorldWeatherOnline);
         String url = BASE_URL + "key=" + apiKey + "&q=" + city + "&format=json";
         handler.onStart();
         Request request = new Request.Builder()

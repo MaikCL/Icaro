@@ -19,7 +19,6 @@ import java.text.Normalizer;
 import java.util.HashMap;
 
 import cl.bit01.icaro.R;
-import cl.bit01.icaro.Utils.ApiKeyReader;
 
 public class ApiWeather {
     private static Context mContext;
@@ -49,7 +48,7 @@ public class ApiWeather {
     }
 
     public void retrieveWeather(String city, ApiResponseHandler handler) throws IOException {
-        apiKey = ApiKeyReader.readApiKey(mContext, R.raw.key_open_weather_map);
+        apiKey = mContext.getResources().getString(R.string.key_OpenWeatherMap);
         String url = BASE_URL + "q=" + city.replace(" ", "+") + URL_OPTIONS + "&appid=" + apiKey;
         handler.onStart();
         Request request = new Request.Builder()

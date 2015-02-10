@@ -49,7 +49,7 @@ public class Weather extends Fragment {
         humidity = (TextView) view.findViewById(R.id.weather_humidity);
         city = (TextView) view.findViewById(R.id.weather_city);
         country = (TextView) view.findViewById(R.id.weather_country);
-        mToolbarCard.setTitle("Temperatura");
+        mToolbarCard.setTitle(getResources().getString(R.string.weather_toolbar_title));
 
         layout.setVisibility(View.INVISIBLE);
         if (bundle != null) {
