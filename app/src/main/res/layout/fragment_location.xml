@@ -59,7 +59,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="Ciudad"
                     android:textColor="@color/primaryDark2"
-                    android:textSize="20sp" />
+                    android:textSize="19sp" />
 
                 <TextView
                     android:id="@+id/location_street"
@@ -75,11 +75,12 @@
                     android:id="@+id/location_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@+id/location_street"
+                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dip"
                     android:text="Usted se encuentra en"
                     android:textColor="@color/primaryDark"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 
