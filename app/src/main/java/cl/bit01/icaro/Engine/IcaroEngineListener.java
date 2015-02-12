@@ -65,6 +65,16 @@ public interface IcaroEngineListener extends ParseTreeListener {
 	 */
 	void exitUbicacion_actual(IcaroEngineParser.Ubicacion_actualContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IcaroEngineParser#explorar_negocios}.
+	 * @param ctx the parse tree
+	 */
+	void enterExplorar_negocios(IcaroEngineParser.Explorar_negociosContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IcaroEngineParser#explorar_negocios}.
+	 * @param ctx the parse tree
+	 */
+	void exitExplorar_negocios(IcaroEngineParser.Explorar_negociosContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IcaroEngineParser#string}.
 	 * @param ctx the parse tree
 	 */

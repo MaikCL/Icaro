@@ -84,6 +84,18 @@ public class IcaroEngineBaseListener implements IcaroEngineListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExplorar_negocios(IcaroEngineParser.Explorar_negociosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExplorar_negocios(IcaroEngineParser.Explorar_negociosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterString(IcaroEngineParser.StringContext ctx) { }
 	/**
 	 * {@inheritDoc}
