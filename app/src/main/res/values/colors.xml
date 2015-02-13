@@ -8,7 +8,10 @@
     <item name="white" type="color">#ffffff</item>
     <item name="black" type="color">#000000</item>
     <item name="background_layout" type="color">#e9e9e9</item>
+
+    <!-- Toolbar Features Color -->
     <item name="weather_toolbar" type="color">#1976D2</item>
     <item name="location_toolbar" type="color">#63b0a4</item>
+    <item name="business_toolbar" type="color">#2B5464</item>
 
 </resources>

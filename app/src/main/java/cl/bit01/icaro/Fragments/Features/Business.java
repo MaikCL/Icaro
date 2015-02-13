@@ -1,4 +1,5 @@
-package cl.bit01.icaro.Fragments.Features;/*
+package cl.bit01.icaro.Fragments.Features;
+/*
  * Created by miguelost on 11-02-15.
  */
 

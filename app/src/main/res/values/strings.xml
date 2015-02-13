@@ -14,5 +14,6 @@
     <string name="humidity">"Humedad: "</string>
     <string name="weather_toolbar_title">Temperatura</string>
     <string name="location_toolbar_title">Ubicacion Actual</string>
+    <string name="powered_foursquare">Powered by Foursquare</string>
 
 </resources>
