@@ -6,6 +6,7 @@ package cl.bit01.icaro.Fragments.Features;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 
+import java.util.HashMap;
+
+import cl.bit01.icaro.ApiClient.ApiBusiness;
+import cl.bit01.icaro.ApiClient.ApiResponseHandler;
 import cl.bit01.icaro.R;
 import cl.bit01.icaro.Utils.GPSTracker;
+import cl.bit01.icaro.Utils.ProgressBar;
 
 public class Business extends Fragment {
     private FrameLayout layout;
@@ -60,6 +66,13 @@ public class Business extends Fragment {
     }
 
     private void exploreBusiness(String business, boolean near) {
+        try {
+            ApiBusiness client = new ApiBusiness();
+            ApiBusiness.setContext(getActivity());
+            client.retrieveBusinessExplore(business, near, new responseHandler());
+        } catch (Exception e) {
+            Log.e("API Error", Log.getStackTraceString(e));
+        }
     }
 
     private void setCurrentLocation() {
@@ -103,5 +116,29 @@ public class Business extends Fragment {
     public void onDestroy() {
         mMapView.onDestroy();
         super.onDestroy();
+    }
+
+    private class responseHandler extends ApiResponseHandler {
+        @Override
+        public void onStart() {
+            ProgressBar.showLoadProgressBar(getActivity());
+            setCurrentLocation();
+        }
+
+        @Override
+        public void onFinish() {
+            ProgressBar.dismissLoadProgressBar();
+        }
+
+        @Override
+        public void onSuccess(HashMap<String, String> dataReturned) {
+
+            layout.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onError() {
+            Log.d("Icaro Business", "Failed to access API Service");
+        }
     }
 }
