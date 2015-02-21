@@ -161,13 +161,13 @@ public class IcaroEngineParser extends Parser {
             return getRuleContext(RelojContext.class,0);
         }
         public ClimaContext clima() {
-            return getRuleContext(ClimaContext.class, 0);
+            return getRuleContext(ClimaContext.class,0);
         }
         public Ubicacion_actualContext ubicacion_actual() {
-            return getRuleContext(Ubicacion_actualContext.class, 0);
+            return getRuleContext(Ubicacion_actualContext.class,0);
         }
         public Explorar_negociosContext explorar_negocios() {
-            return getRuleContext(Explorar_negociosContext.class, 0);
+            return getRuleContext(Explorar_negociosContext.class,0);
         }
         public FuncionalidadContext(ParserRuleContext parent, int invokingState) {
             super(parent, invokingState);
@@ -301,6 +301,7 @@ public class IcaroEngineParser extends Parser {
                         default:
                             throw new NoViableAltException(this);
                     }
+
                     Log.d("Icaro", "ENGINE - Funcionalidad Hora Reconocida");
                     Fragment clockFragment = new Clock();
 
@@ -312,6 +313,7 @@ public class IcaroEngineParser extends Parser {
                             .replace(R.id.fragmentMainIcaro, clockFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
+
                 }
                 break;
                 case 2:
@@ -407,7 +409,7 @@ public class IcaroEngineParser extends Parser {
         public TerminalNode PETICION() { return getToken(IcaroEngineParser.PETICION, 0); }
         public TerminalNode PREPOSICION() { return getToken(IcaroEngineParser.PREPOSICION, 0); }
         public StringContext string() {
-            return getRuleContext(StringContext.class, 0);
+            return getRuleContext(StringContext.class,0);
         }
         public ClimaContext(ParserRuleContext parent, int invokingState) {
             super(parent, invokingState);
@@ -458,7 +460,7 @@ public class IcaroEngineParser extends Parser {
                         }
                     }
 
-                    Log.d("Icaro", "ENGINE - Funcionalidad Clima Reconocida");
+                    Log.d("Icaro","ENGINE - Funcionalidad Clima Reconocida");
                     Fragment weatherFragment = new Weather();
 
                     mFragmentManager.beginTransaction()
@@ -515,6 +517,7 @@ public class IcaroEngineParser extends Parser {
                             .replace(R.id.fragmentMainIcaro, weatherFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
+
                 }
                 break;
             }
@@ -600,6 +603,7 @@ public class IcaroEngineParser extends Parser {
                         .replace(R.id.fragmentMainIcaro, locationFragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .commit();
+
             }
         }
         catch (RecognitionException re) {
@@ -680,6 +684,7 @@ public class IcaroEngineParser extends Parser {
                     Bundle bundle = new Bundle();
                     bundle.putString("business",(((Explorar_negociosContext)_localctx).negocio!=null?_input.getText(((Explorar_negociosContext)_localctx).negocio.start,((Explorar_negociosContext)_localctx).negocio.stop):null));
                     bundle.putBoolean("near",false);
+                    bundle.putString("mode","explore");
                     businessFragment.setArguments(bundle);
 
                     mFragmentManager.beginTransaction()
@@ -731,6 +736,7 @@ public class IcaroEngineParser extends Parser {
                     Bundle bundle = new Bundle();
                     bundle.putString("business",(((Explorar_negociosContext)_localctx).negocio!=null?_input.getText(((Explorar_negociosContext)_localctx).negocio.start,((Explorar_negociosContext)_localctx).negocio.stop):null));
                     bundle.putBoolean("near",true);
+                    bundle.putString("mode","explore");
                     businessFragment.setArguments(bundle);
 
                     mFragmentManager.beginTransaction()
