@@ -51,6 +51,7 @@ public class Business extends Fragment {
         distance = (TextView) view.findViewById(R.id.business_distance);
         phone = (TextView) view.findViewById(R.id.business_phone);
         poweredBy = (TextView) view.findViewById(R.id.business_poweredBy);
+        mMapView = (MapView) view.findViewById(R.id.business_googlemap);
         mToolbarCard.setTitle("Explorando Negocios");
         layout.setVisibility(View.INVISIBLE);
 
