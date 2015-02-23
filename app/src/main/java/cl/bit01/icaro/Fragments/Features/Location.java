@@ -3,6 +3,9 @@ package cl.bit01.icaro.Fragments.Features;
  * Created by miguelost on 09-02-15.
  */
 
+//TODO: Replace with handler.getCurrentPosition();
+
+
 import android.app.Fragment;
 import android.location.Address;
 import android.location.Geocoder;

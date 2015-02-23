@@ -72,7 +72,7 @@ public class Business extends Fragment {
             ApiBusiness.setContext(getActivity());
             client.retrieveBusinessExplore(business, near, new responseHandler());
         } catch (Exception e) {
-            Log.e("API Error", Log.getStackTraceString(e));
+            Log.e("exploreBussiness Error:", Log.getStackTraceString(e));
         }
     }
 
