@@ -17,7 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import cl.bit01.icaro.ApiClient.ApiBusiness;
 import cl.bit01.icaro.ApiClient.ApiResponseHandler;
@@ -132,8 +132,7 @@ public class Business extends Fragment {
         }
 
         @Override
-        public void onSuccess(HashMap<String, String> dataReturned) {
-
+        public void onSuccess(ArrayList businessList) {
             layout.setVisibility(View.VISIBLE);
         }
 
