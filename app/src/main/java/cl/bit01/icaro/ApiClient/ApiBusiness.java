@@ -13,6 +13,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -73,7 +75,63 @@ public class ApiBusiness {
             @Override
             public void onResponse(final Response response) throws IOException {
                 final HashMap<String, String> dataValues = new HashMap<>();
-                Log.d("Icaro", response.body().string());
+
+                try {
+                    final JSONObject apiReturnedData = new JSONObject(response.body().string());
+                    for (int i = 0; i < apiReturnedData.length(); i++) {
+                        JSONObject businessData = apiReturnedData
+                                .getJSONObject("response")
+                                .getJSONArray("groups")
+                                .getJSONObject(0)
+                                .getJSONArray("items")
+                                .getJSONObject(i)
+                                .getJSONObject("venue");
+
+                        if (businessData.has("name"))
+                            dataValues.put("name", businessData.getString("name"));
+                        else dataValues.put("name", "No registrado");
+
+                        if (businessData.getJSONObject("contact").has("phone"))
+                            dataValues.put("phone", businessData.getJSONObject("contact").getString("formattedPhone"));
+                        else dataValues.put("phone", "No disponible");
+
+                        if (businessData.getJSONObject("location").has("address"))
+                            dataValues.put("address", businessData.getJSONObject("location").getString("address"));
+                        else dataValues.put("address", "No disponible");
+
+                        if (businessData.getJSONObject("location").has("crossStreet"))
+                            dataValues.put("crossStreet", businessData.getJSONObject("location").getString("crossStreet"));
+                        else dataValues.put("crossStreet", "No existe ninguna calle de referencia");
+
+                        if (businessData.getJSONObject("location").has("lat"))
+                            dataValues.put("latitude", businessData.getJSONObject("location").getString("lat"));
+                        else dataValues.put("latitude", "null");
+
+                        if (businessData.getJSONObject("location").has("lng"))
+                            dataValues.put("longitude", businessData.getJSONObject("location").getString("lng"));
+                        else dataValues.put("longitude", "null");
+
+                        if (businessData.getJSONObject("location").has("distance"))
+                            dataValues.put("distance", businessData.getJSONObject("location").getString("distance"));
+                        else dataValues.put("distance", "Desconocida");
+
+                        if (businessData.getJSONObject("location").has("city"))
+                            dataValues.put("city", businessData.getJSONObject("location").getString("city"));
+                        else dataValues.put("city", "Desconocida");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("Error Api Bussiness", "Cant parse data");
+                    Log.e("Icaro Api Bussines", e.getMessage());
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.onError();
+                            handler.onFinish();
+                        }
+                    });
+                }
+
             }
 
             @Override

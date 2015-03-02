@@ -15,11 +15,15 @@ import cl.bit01.icaro.Utils.GPSTracker;
  */
 interface InterfaceApiResponseHandler {
     public void onSuccess(HashMap<String, String> response);
+
     public void onError();
+
     public void onError(Context mContext, int errorCode);
+
     public void onStart();
 
     public LatLng getCurrentPosition(Context mContext);
+
     public void onFinish();
 }
 
