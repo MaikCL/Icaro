@@ -16,6 +16,7 @@ import com.squareup.okhttp.Response;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import cl.bit01.icaro.R;
@@ -75,7 +76,7 @@ public class ApiBusiness {
             @Override
             public void onResponse(final Response response) throws IOException {
                 final HashMap<String, String> dataValues = new HashMap<>();
-
+                final ArrayList<HashMap> businessList = new ArrayList<>();
                 try {
                     final JSONObject apiReturnedData = new JSONObject(response.body().string());
                     for (int i = 0; i < apiReturnedData.length(); i++) {
@@ -118,7 +119,16 @@ public class ApiBusiness {
                         if (businessData.getJSONObject("location").has("city"))
                             dataValues.put("city", businessData.getJSONObject("location").getString("city"));
                         else dataValues.put("city", "Desconocida");
+
+                        businessList.add(dataValues);
                     }
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.onSuccess(businessList);
+                            handler.onFinish();
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("Error Api Bussiness", "Cant parse data");
