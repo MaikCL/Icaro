@@ -44,6 +44,7 @@ public class ApiResponseHandler implements InterfaceApiResponseHandler {
     public void onError() {
     }
 
+    //Todo: DEPRECATED - Remove this method and use Utils.ErrorManager
     @Override
     public void onError(Context mContext, int errorCode) {
         if (errorCode == 0)
