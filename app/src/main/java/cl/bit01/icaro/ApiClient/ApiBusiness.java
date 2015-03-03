@@ -44,7 +44,7 @@ public class ApiBusiness {
         ApiBusiness.mContext = context;
     }
 
-    public void retrieveBusinessExplore(String business, boolean near, ApiResponseHandler handler) {
+    public void retrieveBusinessExplore(String business, boolean near, ApiResponseHandler handler) throws IOException {
         apiSecret = mContext.getResources().getString(R.string.clientSecret_Foursquare);
         apiId = mContext.getResources().getString(R.string.clientId_Foursquare);
 
@@ -58,6 +58,7 @@ public class ApiBusiness {
                     URL_OPTIONS + "&query=" + business.replace(" ", "%20") +
                     "&ll=" + userLatitude + "," + userLongitude;
 
+            handler.onStart();
             Request request = new Request.Builder()
                     .url(url)
                     .addHeader("X-Access-Token", apiId)
@@ -75,11 +76,14 @@ public class ApiBusiness {
         return new JsonHttpResponseHandler(handler) {
             @Override
             public void onResponse(final Response response) throws IOException {
-                final HashMap<String, String> dataValues = new HashMap<>();
                 final ArrayList<HashMap> businessList = new ArrayList<>();
                 try {
                     final JSONObject apiReturnedData = new JSONObject(response.body().string());
-                    for (int i = 0; i < apiReturnedData.length(); i++) {
+                    int countResults = Integer.parseInt(apiReturnedData.getJSONObject("response").getString("totalResults"));
+                    if (countResults >= 20) countResults = 20;
+
+                    for (int i = 0; i < countResults - 1; i++) {
+                        final HashMap<String, String> dataValues = new HashMap<>();
                         JSONObject businessData = apiReturnedData
                                 .getJSONObject("response")
                                 .getJSONArray("groups")
@@ -141,7 +145,6 @@ public class ApiBusiness {
                         }
                     });
                 }
-
             }
 
             @Override
@@ -149,7 +152,7 @@ public class ApiBusiness {
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        handler.onError(mContext, 1);
+                        handler.onError();
                         handler.onFinish();
                     }
                 });

@@ -37,7 +37,6 @@ public class ApiResponseHandler implements InterfaceApiResponseHandler {
     }
 
     public void onSuccess(ArrayList response) {
-
     }
 
     @Override
