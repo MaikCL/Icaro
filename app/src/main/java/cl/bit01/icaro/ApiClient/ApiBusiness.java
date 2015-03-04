@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cl.bit01.icaro.R;
 import cl.bit01.icaro.Utils.ErrorManager;
@@ -76,7 +77,7 @@ public class ApiBusiness {
         return new JsonHttpResponseHandler(handler) {
             @Override
             public void onResponse(final Response response) throws IOException {
-                final ArrayList<HashMap> businessList = new ArrayList<>();
+                final List<HashMap> businessList = new ArrayList<>();
                 try {
                     final JSONObject apiReturnedData = new JSONObject(response.body().string());
                     int countResults = Integer.parseInt(apiReturnedData.getJSONObject("response").getString("totalResults"));

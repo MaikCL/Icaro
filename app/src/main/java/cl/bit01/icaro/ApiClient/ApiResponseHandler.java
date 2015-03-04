@@ -6,8 +6,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cl.bit01.icaro.Utils.GPSTracker;
 
@@ -17,7 +17,7 @@ import cl.bit01.icaro.Utils.GPSTracker;
 interface InterfaceApiResponseHandler {
     public void onSuccess(HashMap<String, String> response);
 
-    public void onSuccess(ArrayList response);
+    public void onSuccess(List<HashMap> response);
 
     public void onError();
 
@@ -36,7 +36,7 @@ public class ApiResponseHandler implements InterfaceApiResponseHandler {
     public void onSuccess(HashMap<String, String> response) {
     }
 
-    public void onSuccess(ArrayList response) {
+    public void onSuccess(List<HashMap> response) {
     }
 
     @Override

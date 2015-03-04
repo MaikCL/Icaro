@@ -17,7 +17,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import cl.bit01.icaro.ApiClient.ApiBusiness;
 import cl.bit01.icaro.ApiClient.ApiResponseHandler;
@@ -133,7 +134,15 @@ public class Business extends Fragment {
         }
 
         @Override
-        public void onSuccess(ArrayList businessList) {
+        public void onSuccess(List<HashMap> businessList) {
+
+            double userLatitude = (double) businessList.get(0).get("latitude");
+            double userLongitude = (double) businessList.get(0).get("longitude");
+
+            for (int i = 1; i <= businessList.size() - 1; i++) {
+
+            }
+
             layout.setVisibility(View.VISIBLE);
         }
 
