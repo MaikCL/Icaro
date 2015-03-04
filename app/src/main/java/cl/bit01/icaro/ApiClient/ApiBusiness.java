@@ -26,7 +26,7 @@ public class ApiBusiness {
     private static Context mContext;
     private static String BASE_URL = "https://api.foursquare.com/v2/venues";
     private static String API_VERSION = "20130815";
-    private static String URL_OPTIONS = "&limit=15&venuePhotos=1&locale=es";
+    private static String URL_OPTIONS = "&limit=20&venuePhotos=1&locale=es";
     private static String SEARCH_MODE = "/search?";
     private static String EXPLORE_MODE = "/explore?";
     private static String apiSecret;

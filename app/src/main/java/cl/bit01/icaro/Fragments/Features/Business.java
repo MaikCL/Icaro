@@ -77,7 +77,8 @@ public class Business extends Fragment {
     }
 
     private void setCurrentLocation() {
-
+        mGoogleMap.setMyLocationEnabled(true);
+        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
     private void initMapView(View view) {
