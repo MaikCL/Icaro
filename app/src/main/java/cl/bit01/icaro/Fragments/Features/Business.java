@@ -13,9 +13,15 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -134,15 +140,39 @@ public class Business extends Fragment {
         }
 
         @Override
-        public void onSuccess(List<HashMap> businessList) {
+        public void onSuccess(final List<HashMap> businessList) {
 
             double userLatitude = (double) businessList.get(0).get("latitude");
             double userLongitude = (double) businessList.get(0).get("longitude");
 
-            for (int i = 1; i <= businessList.size() - 1; i++) {
+            CameraPosition mapPosition = new CameraPosition.Builder()
+                    .target(new LatLng(userLatitude, userLongitude))
+                    .zoom(14)
+                    .bearing(0)
+                    .tilt(40)
+                    .build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(mapPosition);
+            mGoogleMap.animateCamera(cameraUpdate);
 
+            for (int i = 1; i <= businessList.size() - 1; i++) {
+                mGoogleMap.addMarker(new MarkerOptions().position(
+                        new LatLng(Double.valueOf((String) businessList.get(i).get("latitude")),
+                                Double.valueOf((String) businessList.get(i).get("longitude"))))
+                        .title((String) businessList.get(i).get("name")));
             }
 
+            mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    int id = Integer.parseInt(marker.getId().substring(1));
+                    name.setText((String) businessList.get(id).get("name"));
+                    address.setText((String) businessList.get(id).get("address"));
+                    secondaryAddress.setText((String) businessList.get(id).get("crossStreet"));
+                    phone.setText((String) businessList.get(id).get("phone"));
+                    distance.setText((String) businessList.get(id).get("distance"));
+                    return false;
+                }
+            });
             layout.setVisibility(View.VISIBLE);
         }
 
