@@ -82,7 +82,7 @@ public class ApiBusiness {
                     int countResults = Integer.parseInt(apiReturnedData.getJSONObject("response").getString("totalResults"));
                     if (countResults >= 20) countResults = 20;
 
-                    for (int i = 0; i < countResults - 1; i++) {
+                    for (int i = 0; i < countResults; i++) {
                         final HashMap<String, String> dataValues = new HashMap<>();
                         JSONObject businessData = apiReturnedData
                                 .getJSONObject("response")
@@ -126,6 +126,12 @@ public class ApiBusiness {
 
                         businessList.add(dataValues);
                     }
+
+                    final HashMap<String, Double> userLocation = new HashMap<>();
+                    userLocation.put("latitude", userLatitude);
+                    userLocation.put("longitude", userLongitude);
+                    businessList.add(0, userLocation);
+
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
