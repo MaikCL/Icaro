@@ -165,14 +165,15 @@ public class Business extends Fragment {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     int id = Integer.parseInt(marker.getId().substring(1));
-                    name.setText((String) businessList.get(id).get("name"));
-                    address.setText((String) businessList.get(id).get("address"));
-                    secondaryAddress.setText((String) businessList.get(id).get("crossStreet"));
-                    phone.setText((String) businessList.get(id).get("phone"));
-                    distance.setText((String) businessList.get(id).get("distance"));
+                    name.setText((String) businessList.get(id + 1).get("name"));
+                    address.setText((String) businessList.get(id + 1).get("address"));
+                    secondaryAddress.setText((String) businessList.get(id + 1).get("crossStreet"));
+                    phone.setText((String) businessList.get(id + 1).get("phone"));
+                    distance.setText((String) businessList.get(id + 1).get("distance"));
                     return false;
                 }
             });
+            poweredBy.setText(R.string.powered_foursquare);
             layout.setVisibility(View.VISIBLE);
         }
 
