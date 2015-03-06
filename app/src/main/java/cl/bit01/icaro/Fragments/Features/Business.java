@@ -65,9 +65,9 @@ public class Business extends Fragment {
 
         if (bundle.getString("mode").equals("explore")) {
             exploreBusiness(bundle.getString("business"), bundle.getBoolean("near"));
-        } //else (bundle.getString("mode").equals("search")){
-
-        //}
+        } else if (bundle.getString("mode").equals("search")) {
+            searchBusiness(bundle.getString("business"), bundle.getBoolean("near"));
+        }
         return view;
     }
 
@@ -78,6 +78,16 @@ public class Business extends Fragment {
             client.retrieveBusinessExplore(business, near, new responseHandler());
         } catch (Exception e) {
             Log.e("exploreBussiness Error:", Log.getStackTraceString(e));
+        }
+    }
+
+    private void searchBusiness(String business, boolean near) {
+        try {
+            ApiBusiness client = new ApiBusiness();
+            ApiBusiness.setContext(getActivity());
+            client.retrieveBusinessSearch(business, near, new responseHandler());
+        } catch (Exception e) {
+            Log.e("searchBusiness Error:", Log.getStackTraceString(e));
         }
     }
 

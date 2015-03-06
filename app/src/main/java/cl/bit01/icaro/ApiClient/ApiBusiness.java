@@ -58,13 +58,36 @@ public class ApiBusiness {
                     "&client_secret=" + apiSecret + "&v=" + API_VERSION +
                     URL_OPTIONS + "&query=" + business.replace(" ", "%20") +
                     "&ll=" + userLatitude + "," + userLongitude;
-
             handler.onStart();
             Request request = new Request.Builder()
                     .url(url)
                     .addHeader("X-Access-Token", apiId)
                     .build();
+            httpClient.newCall(request).enqueue(parseData(handler));
+        } else {
+            ErrorManager.notify(mContext, 1002);
+            ErrorManager.logError("ApiBussines.java", "GeoCoder Error", "Lat/Lng is null");
+        }
+    }
 
+    public void retrieveBusinessSearch(String business, boolean near, ApiResponseHandler handler) throws IOException {
+        apiSecret = mContext.getResources().getString(R.string.clientSecret_Foursquare);
+        apiId = mContext.getResources().getString(R.string.clientId_Foursquare);
+
+        LatLng currentPosition = handler.getCurrentPosition(mContext);
+        if (currentPosition != null) {
+            userLatitude = currentPosition.latitude;
+            userLongitude = currentPosition.longitude;
+
+            String url = BASE_URL + SEARCH_MODE + "client_id=" + apiId +
+                    "&client_secret=" + apiSecret + "&v=" + API_VERSION +
+                    URL_OPTIONS + "&query=" + business.replace(" ", "%20") +
+                    "&ll=" + userLatitude + "," + userLongitude;
+            handler.onStart();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("X-Access-Token", apiId)
+                    .build();
             httpClient.newCall(request).enqueue(parseData(handler));
         } else {
             ErrorManager.notify(mContext, 1002);
