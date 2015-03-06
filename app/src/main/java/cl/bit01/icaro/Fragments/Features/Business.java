@@ -29,7 +29,6 @@ import java.util.List;
 import cl.bit01.icaro.ApiClient.ApiBusiness;
 import cl.bit01.icaro.ApiClient.ApiResponseHandler;
 import cl.bit01.icaro.R;
-import cl.bit01.icaro.Utils.GPSTracker;
 import cl.bit01.icaro.Utils.ProgressBar;
 
 public class Business extends Fragment {
@@ -43,7 +42,6 @@ public class Business extends Fragment {
     private MapView mMapView;
     private GoogleMap mGoogleMap;
     private Bundle mBundle;
-    private GPSTracker gps;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View view = inflater.inflate(R.layout.fragment_business, container, false);
@@ -106,7 +104,6 @@ public class Business extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBundle = savedInstanceState;
-        gps = new GPSTracker(getActivity());
     }
 
     @Override
@@ -141,24 +138,20 @@ public class Business extends Fragment {
 
         @Override
         public void onSuccess(final List<HashMap> businessList) {
-
+            int minorDistance = Integer.valueOf((String) businessList.get(1).get("distance"));
+            int minorDistanceId = 1;
             double userLatitude = (double) businessList.get(0).get("latitude");
             double userLongitude = (double) businessList.get(0).get("longitude");
-
-            CameraPosition mapPosition = new CameraPosition.Builder()
-                    .target(new LatLng(userLatitude, userLongitude))
-                    .zoom(14)
-                    .bearing(0)
-                    .tilt(40)
-                    .build();
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(mapPosition);
-            mGoogleMap.animateCamera(cameraUpdate);
 
             for (int i = 1; i <= businessList.size() - 1; i++) {
                 mGoogleMap.addMarker(new MarkerOptions().position(
                         new LatLng(Double.valueOf((String) businessList.get(i).get("latitude")),
                                 Double.valueOf((String) businessList.get(i).get("longitude"))))
                         .title((String) businessList.get(i).get("name")));
+                if (Integer.valueOf((String) businessList.get(i).get("distance")) <= minorDistance) {
+                    minorDistanceId = i;
+                    minorDistance = Integer.valueOf((String) businessList.get(i).get("distance"));
+                }
             }
 
             mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -167,12 +160,29 @@ public class Business extends Fragment {
                     int id = Integer.parseInt(marker.getId().substring(1));
                     name.setText((String) businessList.get(id + 1).get("name"));
                     address.setText((String) businessList.get(id + 1).get("address"));
-                    secondaryAddress.setText((String) businessList.get(id + 1).get("crossStreet"));
-                    phone.setText((String) businessList.get(id + 1).get("phone"));
-                    distance.setText((String) businessList.get(id + 1).get("distance"));
+                    secondaryAddress.setText("Referencia: " + businessList.get(id + 1).get("crossStreet"));
+                    phone.setText("Telefono: " + businessList.get(id + 1).get("phone"));
+                    distance.setText("Distancia: " + businessList.get(id + 1).get("distance") + " metros");
                     return false;
                 }
             });
+
+            CameraPosition mapPosition = new CameraPosition.Builder()
+                    .target(new LatLng(Double.valueOf((String) businessList.get(minorDistanceId).get("latitude")),
+                            Double.valueOf((String) businessList.get(minorDistanceId).get("longitude"))))
+                    .zoom(14)
+                    .bearing(0)
+                    .tilt(40)
+                    .build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(mapPosition);
+            mGoogleMap.animateCamera(cameraUpdate);
+
+            name.setText((String) businessList.get(minorDistanceId).get("name"));
+            address.setText((String) businessList.get(minorDistanceId).get("address"));
+            secondaryAddress.setText("Referencia: " + businessList.get(minorDistanceId).get("crossStreet"));
+            phone.setText("Telefono: " + businessList.get(minorDistanceId).get("phone"));
+            distance.setText("Distancia: " + businessList.get(minorDistanceId).get("distance") + "metros");
+
             poweredBy.setText(R.string.powered_foursquare);
             layout.setVisibility(View.VISIBLE);
         }

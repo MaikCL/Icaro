@@ -107,7 +107,7 @@ public class ApiBusiness {
 
                         if (businessData.getJSONObject("location").has("crossStreet"))
                             dataValues.put("crossStreet", businessData.getJSONObject("location").getString("crossStreet"));
-                        else dataValues.put("crossStreet", "No existe ninguna calle de referencia");
+                        else dataValues.put("crossStreet", "No Disponible");
 
                         if (businessData.getJSONObject("location").has("lat"))
                             dataValues.put("latitude", businessData.getJSONObject("location").getString("lat"));
@@ -119,7 +119,7 @@ public class ApiBusiness {
 
                         if (businessData.getJSONObject("location").has("distance"))
                             dataValues.put("distance", businessData.getJSONObject("location").getString("distance"));
-                        else dataValues.put("distance", "Desconocida");
+                        else dataValues.put("distance", "No Disponible");
 
                         if (businessData.getJSONObject("location").has("city"))
                             dataValues.put("city", businessData.getJSONObject("location").getString("city"));

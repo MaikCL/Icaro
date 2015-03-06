@@ -61,7 +61,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/business_name"
-                    android:layout_marginLeft="4dip"
+                    android:layout_marginLeft="8dip"
                     android:text="Manuel Montt"
                     android:textColor="@color/primary_dark_material_light"
                     android:textSize="20sp"
@@ -74,10 +74,10 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/business_address"
-                    android:layout_marginLeft="4dip"
-                    android:text="Francisco Bilbao"
+                    android:layout_marginLeft="8dip"
+                    android:text="Referencia: Francisco Bilbao"
                     android:textColor="@color/primary_dark_material_light"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/business_distance"
@@ -86,10 +86,10 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/business_secondaryAddress"
-                    android:layout_marginLeft="4dip"
+                    android:layout_marginLeft="8dip"
                     android:text="Distancia: 400 metros"
                     android:textColor="@color/primary_dark_material_light"
-                    android:textSize="16sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/business_phone"
@@ -98,10 +98,9 @@
                     android:layout_alignLeft="@+id/business_distance"
                     android:layout_alignStart="@+id/business_distance"
                     android:layout_below="@+id/business_distance"
-                    android:layout_marginTop="8dip"
                     android:text="Telefono: +56 9 5402724"
-                    android:textColor="@color/primaryDark2"
-                    android:textSize="19sp" />
+                    android:textColor="@color/primary_dark_material_light"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/business_poweredBy"
