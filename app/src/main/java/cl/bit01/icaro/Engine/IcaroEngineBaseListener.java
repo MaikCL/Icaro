@@ -1,4 +1,4 @@
-// Generated from /media/HD/Documentos/Proyectos Git/Icaro Engine/IcaroEngine.g4 by ANTLR 4.5
+// Generated from IcaroEngine.g4 by ANTLR 4.5
 
     package cl.bit01.icaro.Engine;
 
@@ -9,12 +9,11 @@
 
 
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link IcaroEngineListener},
+ * This class provides an empty implementation of {@link cl.bit01.icaro.Engine.IcaroEngineListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
@@ -91,6 +90,114 @@ public class IcaroEngineBaseListener implements IcaroEngineListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExplorar_negocios(IcaroEngineParser.Explorar_negociosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBuscar_negocios(IcaroEngineParser.Buscar_negociosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBuscar_negocios(IcaroEngineParser.Buscar_negociosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCalendario(IcaroEngineParser.CalendarioContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCalendario(IcaroEngineParser.CalendarioContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBusqueda_general(IcaroEngineParser.Busqueda_generalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBusqueda_general(IcaroEngineParser.Busqueda_generalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhatsapp(IcaroEngineParser.WhatsappContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhatsapp(IcaroEngineParser.WhatsappContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTelefonia(IcaroEngineParser.TelefoniaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTelefonia(IcaroEngineParser.TelefoniaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBusqueda_web(IcaroEngineParser.Busqueda_webContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBusqueda_web(IcaroEngineParser.Busqueda_webContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNoticias(IcaroEngineParser.NoticiasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNoticias(IcaroEngineParser.NoticiasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRecordatorios(IcaroEngineParser.RecordatoriosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRecordatorios(IcaroEngineParser.RecordatoriosContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAlarmas(IcaroEngineParser.AlarmasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAlarmas(IcaroEngineParser.AlarmasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
