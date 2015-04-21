@@ -48,22 +48,22 @@ public class Location extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        View view = inflater.inflate(R.layout.fragment_location, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_location, container, false);
         MapsInitializer.initialize(getActivity());
 
-        Toolbar mToolbarCard = (Toolbar) view.findViewById(R.id.toolbar_location);
-        layout = (FrameLayout) view.findViewById(R.id.location_layout);
-        country = (TextView) view.findViewById(R.id.location_country);
-        city = (TextView) view.findViewById(R.id.location_city);
-        street = (TextView) view.findViewById(R.id.location_street);
-        mMapView = (MapView) view.findViewById(R.id.location_googlemap);
+        Toolbar mToolbarCard = (Toolbar) rootView.findViewById(R.id.toolbar_location);
+        layout = (FrameLayout) rootView.findViewById(R.id.location_layout);
+        country = (TextView) rootView.findViewById(R.id.location_country);
+        city = (TextView) rootView.findViewById(R.id.location_city);
+        street = (TextView) rootView.findViewById(R.id.location_street);
+        mMapView = (MapView) rootView.findViewById(R.id.location_googlemap);
         mToolbarCard.setTitle(getResources().getString(R.string.location_toolbar_title));
         layout.setVisibility(View.INVISIBLE);
 
         mMapView.onCreate(mBundle);
-        initMapView(view);
+        initMapView(rootView);
         setCurrentLocation();
-        return view;
+        return rootView;
     }
 
     @Override

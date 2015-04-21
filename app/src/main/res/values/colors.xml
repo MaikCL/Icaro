@@ -13,5 +13,5 @@
     <item name="weather_toolbar" type="color">#1976D2</item>
     <item name="location_toolbar" type="color">#63b0a4</item>
     <item name="business_toolbar" type="color">#2B5464</item>
-
+    <item name="alarm_toolbar" type="color">#cd0000</item>
 </resources>

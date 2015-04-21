@@ -44,31 +44,31 @@ public class Business extends Fragment {
     private Bundle mBundle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        View view = inflater.inflate(R.layout.fragment_business, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_business, container, false);
         MapsInitializer.initialize(getActivity());
         Bundle bundle = this.getArguments();
 
-        Toolbar mToolbarCard = (Toolbar) view.findViewById(R.id.toolbar_business);
-        layout = (FrameLayout) view.findViewById(R.id.business_layout);
-        name = (TextView) view.findViewById(R.id.business_name);
-        address = (TextView) view.findViewById(R.id.business_address);
-        secondaryAddress = (TextView) view.findViewById(R.id.business_secondaryAddress);
-        distance = (TextView) view.findViewById(R.id.business_distance);
-        phone = (TextView) view.findViewById(R.id.business_phone);
-        poweredBy = (TextView) view.findViewById(R.id.business_poweredBy);
-        mMapView = (MapView) view.findViewById(R.id.business_googlemap);
+        Toolbar mToolbarCard = (Toolbar) rootView.findViewById(R.id.toolbar_business);
+        layout = (FrameLayout) rootView.findViewById(R.id.business_layout);
+        name = (TextView) rootView.findViewById(R.id.business_name);
+        address = (TextView) rootView.findViewById(R.id.business_address);
+        secondaryAddress = (TextView) rootView.findViewById(R.id.business_secondaryAddress);
+        distance = (TextView) rootView.findViewById(R.id.business_distance);
+        phone = (TextView) rootView.findViewById(R.id.business_phone);
+        poweredBy = (TextView) rootView.findViewById(R.id.business_poweredBy);
+        mMapView = (MapView) rootView.findViewById(R.id.business_googlemap);
         mToolbarCard.setTitle("Explorando Negocios");
         layout.setVisibility(View.INVISIBLE);
 
         mMapView.onCreate(mBundle);
-        initMapView(view);
+        initMapView(rootView);
 
         if (bundle.getString("mode").equals("explore")) {
             exploreBusiness(bundle.getString("business"), bundle.getBoolean("near"));
         } else if (bundle.getString("mode").equals("search")) {
             searchBusiness(bundle.getString("business"), bundle.getBoolean("near"));
         }
-        return view;
+        return rootView;
     }
 
     private void exploreBusiness(String business, boolean near) {

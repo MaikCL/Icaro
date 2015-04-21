@@ -35,20 +35,20 @@ public class Weather extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view;
+        View rootView;
         Bundle bundle = this.getArguments();
-        view = inflater.inflate(R.layout.fragment_weather, container, false);
+        rootView = inflater.inflate(R.layout.fragment_weather, container, false);
 
-        Toolbar mToolbarCard = (Toolbar) view.findViewById(R.id.toolbar_weather);
-        layout = (FrameLayout) view.findViewById(R.id.weather_layout);
-        icon = (ImageView) view.findViewById(R.id.weather_icon);
-        temperature = (TextView) view.findViewById(R.id.weather_temperature);
-        status = (TextView) view.findViewById(R.id.weather_status);
-        temperatureMin = (TextView) view.findViewById(R.id.weather_tempmin);
-        temperatureMax = (TextView) view.findViewById(R.id.weather_tempmax);
-        humidity = (TextView) view.findViewById(R.id.weather_humidity);
-        city = (TextView) view.findViewById(R.id.weather_city);
-        country = (TextView) view.findViewById(R.id.weather_country);
+        Toolbar mToolbarCard = (Toolbar) rootView.findViewById(R.id.toolbar_weather);
+        layout = (FrameLayout) rootView.findViewById(R.id.weather_layout);
+        icon = (ImageView) rootView.findViewById(R.id.weather_icon);
+        temperature = (TextView) rootView.findViewById(R.id.weather_temperature);
+        status = (TextView) rootView.findViewById(R.id.weather_status);
+        temperatureMin = (TextView) rootView.findViewById(R.id.weather_tempmin);
+        temperatureMax = (TextView) rootView.findViewById(R.id.weather_tempmax);
+        humidity = (TextView) rootView.findViewById(R.id.weather_humidity);
+        city = (TextView) rootView.findViewById(R.id.weather_city);
+        country = (TextView) rootView.findViewById(R.id.weather_country);
         mToolbarCard.setTitle(getResources().getString(R.string.weather_toolbar_title));
 
         layout.setVisibility(View.INVISIBLE);
@@ -60,7 +60,7 @@ public class Weather extends Fragment {
                 setWeather(gps.getLatitude(), gps.getLongitude());
             }
         }
-        return view;
+        return rootView;
     }
 
     private void setWeather(double latitude, double longitude) {

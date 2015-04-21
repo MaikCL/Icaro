@@ -33,14 +33,14 @@ public class Clock extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = null;
+        View rootView = null;
         Bundle bundle = this.getArguments();
 
         if (bundle.getString("layoutMode").equals("localClock")) {
-            view = inflater.inflate(R.layout.fragment_clock, container, false);
-            layout_clock = (RelativeLayout) view.findViewById(R.id.layout_clock);
-            hour = (TextView) view.findViewById(R.id.clock_hour);
-            minutes = (TextView) view.findViewById(clock_minutes);
+            rootView = inflater.inflate(R.layout.fragment_clock, container, false);
+            layout_clock = (RelativeLayout) rootView.findViewById(R.id.layout_clock);
+            hour = (TextView) rootView.findViewById(R.id.clock_hour);
+            minutes = (TextView) rootView.findViewById(clock_minutes);
             layout_clock.setVisibility(View.INVISIBLE);
 
             gps = new GPSTracker(getActivity());
@@ -48,15 +48,15 @@ public class Clock extends Fragment {
         }
 
         if (bundle.getString("layoutMode").equals("worldClock")) {
-            view = inflater.inflate(R.layout.fragment_clock, container, false);
-            layout_clock = (RelativeLayout) view.findViewById(R.id.layout_clock);
-            hour = (TextView) view.findViewById(R.id.clock_hour);
-            minutes = (TextView) view.findViewById(clock_minutes);
+            rootView = inflater.inflate(R.layout.fragment_clock, container, false);
+            layout_clock = (RelativeLayout) rootView.findViewById(R.id.layout_clock);
+            hour = (TextView) rootView.findViewById(R.id.clock_hour);
+            minutes = (TextView) rootView.findViewById(clock_minutes);
             layout_clock.setVisibility(View.INVISIBLE);
 
             setClock(bundle.getString("city"));
         }
-        return view;
+        return rootView;
     }
 
     private void setClock(String city) {
