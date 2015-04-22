@@ -14,4 +14,5 @@
     <item name="location_toolbar" type="color">#63b0a4</item>
     <item name="business_toolbar" type="color">#2B5464</item>
     <item name="alarm_toolbar" type="color">#cd0000</item>
+    <item name="remember_toolbar" type="color">#468499</item>
 </resources>

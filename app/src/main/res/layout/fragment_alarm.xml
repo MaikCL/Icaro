@@ -74,9 +74,9 @@
             android:id="@+id/alarm_button_confirm"
             android:layout_width="150dip"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/alarm_twice"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dip"
+            android:layout_marginBottom="15dip"
             android:background="@color/primary"
             android:text="Confirmar" />
 

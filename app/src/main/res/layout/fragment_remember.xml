@@ -1,9 +1,60 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="cl.bit01.icaro.Fragments.Features.Remember">
+    android:id="@+id/alarm_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_layout">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="13dip"
+        android:background="@color/white"
+        android:elevation="7dip">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar_remember"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/remember_toolbar"
+            android:textColorPrimary="@color/white" />
+
+        <TextView
+            android:id="@+id/remember_actionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_remember"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dip"
+            android:text="Esta seguro de eliminar el recordatorio?"
+            android:textColor="@color/primary_dark_material_light"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/remember_rememberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar_remember"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:text="Ir a comprar pan"
+            android:textColor="@color/primaryDark2"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/remember_button_confirm"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dip"
+            android:background="@color/primary"
+            android:text="Confirmar" />
+
+    </RelativeLayout>
 </FrameLayout>

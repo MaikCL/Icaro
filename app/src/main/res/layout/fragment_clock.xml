@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="cl.bit01.icaro.Fragments.Features.Clock">
+    tools:context="cl.mzapatae.icaro.Features.Clock">
 
 
-<TextView
+    <TextView
         android:id="@+id/clock_twice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
