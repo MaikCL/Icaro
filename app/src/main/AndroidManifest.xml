@@ -33,6 +33,8 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/key_GoogleMaps_dev_Note" />
+
+        <receiver android:name="cl.mzapatae.icaro.Utils.DeleteRememberBroadcast" />
     </application>
 
 </manifest>
