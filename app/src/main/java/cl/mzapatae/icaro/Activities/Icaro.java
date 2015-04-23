@@ -31,7 +31,7 @@ import cl.mzapatae.icaro.Engine.IcaroEngineParser;
 
 public class Icaro extends ActionBarActivity {
     private final int REQUEST_OK = 1;
-    private FragmentManager mFragmentManager;
+    private FragmentManager fragmentManager;
     private int TTS_DATA_CHECK = 1;
 
     private Locale Español = new Locale("spa");
@@ -44,7 +44,7 @@ public class Icaro extends ActionBarActivity {
         setContentView(R.layout.activity_icaro);
         initTextToSpeech();
 
-        mFragmentManager = getFragmentManager();
+        fragmentManager = getFragmentManager();
         peticionUsuario = (TextView) findViewById(R.id.text_peticion);
         FloatingActionButton buttonMic = (FloatingActionButton) findViewById(R.id.mic_button);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -115,6 +115,6 @@ public class Icaro extends ActionBarActivity {
 
         IcaroEngineLexer lexer = new IcaroEngineLexer(new ANTLRInputStream(peticion.toLowerCase(Español))); //locale español
         IcaroEngineParser parser = new IcaroEngineParser(new CommonTokenStream(lexer));
-        parser.icaro(mFragmentManager);
+        parser.icaro(fragmentManager);
     }
 }
