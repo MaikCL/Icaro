@@ -6,6 +6,7 @@
     <item name="primaryDark2" type="color">#005959</item>
     <item name="colorAccent" type="color">#007373</item>
     <item name="white" type="color">#ffffff</item>
+    <item name="background_cardView" type="color">#ffffff</item>
     <item name="black" type="color">#000000</item>
     <item name="background_layout" type="color">#e9e9e9</item>
 
