@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/background_cardView"
+    android:background="@color/cardview.background"
     android:elevation="4dip"
-    card_view:cardBackgroundColor="@color/background_cardView"
+    card_view:cardBackgroundColor="@color/cardview.background"
     card_view:cardCornerRadius="3dip"
     card_view:cardElevation="2dip"
     card_view:cardUseCompatPadding="true">
@@ -19,6 +19,28 @@
         android:layout_height="wrap_content"
         android:background="@color/background_cardView">
 
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="New Text" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:text="New Text" />
 
     </RelativeLayout>
 

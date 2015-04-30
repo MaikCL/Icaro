@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/alarm_toolbar"
+            android:background="@color/toolbar.alarm"
             android:textColorPrimary="@color/white" />
 
         <TextView

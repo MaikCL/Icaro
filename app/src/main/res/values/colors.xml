@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- app base color -->
+    <item name="app.primary" type="color">#008080</item>
+    <item name="app.primary.dark" type="color">#007373</item>
+    <item name="app.secondary.dark" type="color">#005959</item>
+    <item name="app.layout.background" type="color">#EEEEEE</item>
+
+    <!-- Fonts Color -->
+    <item name="font.color.light" type="color">#FFFFFF</item>
+    <item name="font.color.light.text.primary" type="color">#13FFFFFF</item>
+    <item name="font.color.light.text.secondary" type="color">#46FFFFFF</item>
+    <item name="font_color.light.text.hint" type="color">#74FFFFFF</item>
+
+    <item name="font.color.dark" type="color">#000000</item>
+    <item name="font.color.dark.text.primary" type="color">#95000000</item>
+    <item name="font.color.dark.text.secondary" type="color">#30000000</item>
+    <item name="font.color.dark.text.hint" type="color">#70000000</item>
+
+    <!-- Toolbar Features Color -->
+    <item name="toolbar.weather" type="color">#1976D2</item>
+    <item name="toolbar.location" type="color">#63b0a4</item>
+    <item name="toolbar.business" type="color">#2B5464</item>
+    <item name="toolbar.alarm" type="color">#cd0000</item>
+    <item name="toolbar.remember" type="color">#468499</item>
+
+    <!-- Cardview Background Color -->
+    <item name="cardview.background" type="color">#FAFAFA</item>
+
+
+    <!-- Old -->
     <item name="primary" type="color">#008080</item>
     <item name="primaryDark" type="color">#007373</item>
     <item name="primaryDark2" type="color">#005959</item>
     <item name="colorAccent" type="color">#007373</item>
     <item name="white" type="color">#ffffff</item>
-    <item name="background_cardView" type="color">#ffffff</item>
+    <item name="background_cardView" type="color">#FAFAFA</item>
     <item name="black" type="color">#000000</item>
-    <item name="background_layout" type="color">#e9e9e9</item>
+    <item name="background_layout" type="color">#EEEEEE</item>
 
-    <!-- Toolbar Features Color -->
-    <item name="weather_toolbar" type="color">#1976D2</item>
-    <item name="location_toolbar" type="color">#63b0a4</item>
-    <item name="business_toolbar" type="color">#2B5464</item>
-    <item name="alarm_toolbar" type="color">#cd0000</item>
-    <item name="remember_toolbar" type="color">#468499</item>
+
 </resources>

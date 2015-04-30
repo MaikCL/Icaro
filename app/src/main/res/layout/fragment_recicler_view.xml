@@ -4,7 +4,7 @@
     android:id="@+id/reciclerView_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_layout"
+    android:background="@color/app.layout.background"
     android:orientation="vertical"
     tools:context="cl.mzapatae.icaro.Features.News">
 
@@ -12,7 +12,7 @@
         android:id="@+id/reciclerView_reciclerList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_layout"
+        android:background="@color/app.layout.background"
         android:scrollbars="vertical" />
 
 </RelativeLayout>

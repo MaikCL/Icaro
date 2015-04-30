@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="@color/weather_toolbar"
+            android:background="@color/toolbar.weather"
             android:textColorPrimary="@color/white" />
 
         <ImageView
