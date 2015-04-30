@@ -2,7 +2,7 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/videoCard_view"
+    android:id="@+id/news_cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -14,33 +14,42 @@
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:id="@+id/cardViewFeed_layout"
+        android:id="@+id/news_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background_cardView">
 
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:id="@+id/news_title"
+            android:layout_margin="3dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="New Text" />
+            android:text="Titular"
+            android:gravity="center"
+            android:textColor="@color/font.color.dark"
+            android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/news_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginBottom="3dip"
+            android:layout_marginRight="5dip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            android:text="New Text" />
+            android:layout_below="@+id/news_title"
+            android:text="Lorem impsum lorem impsum bla bla bla bla bla bla bla bla bla..."
+            android:textColor="@color/font.color.dark.text.primary"
+            android:textSize="16sp"/>
 
     </RelativeLayout>
 
