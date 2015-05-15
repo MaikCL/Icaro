@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.HashMap;
 import java.util.List;
 
+import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
 import cl.mzapatae.icaro.Utils.GPSTracker;
 
 /*
@@ -18,6 +19,8 @@ interface InterfaceApiResponseHandler {
     public void onSuccess(HashMap<String, String> response);
 
     public void onSuccess(List<HashMap> response);
+
+    public void onSuccess(FoursquareSearchJSON foursquareGson);
 
     public void onError();
 
@@ -37,6 +40,9 @@ public class ApiResponseHandler implements InterfaceApiResponseHandler {
     }
 
     public void onSuccess(List<HashMap> response) {
+    }
+
+    public void onSuccess(FoursquareSearchJSON foursquareGson) {
     }
 
     @Override

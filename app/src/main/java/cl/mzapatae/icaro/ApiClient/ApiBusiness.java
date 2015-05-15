@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
 import cl.mzapatae.icaro.Utils.ErrorManager;
 
 public class ApiBusiness {
@@ -58,6 +60,7 @@ public class ApiBusiness {
                     "&client_secret=" + apiSecret + "&v=" + API_VERSION +
                     URL_OPTIONS + "&query=" + business.replace(" ", "%20") +
                     "&ll=" + userLatitude + "," + userLongitude;
+            Log.d("Icaro", " API Explore Foursquare Url: " + url);
             handler.onStart();
             Request request = new Request.Builder()
                     .url(url)
@@ -83,16 +86,77 @@ public class ApiBusiness {
                     "&client_secret=" + apiSecret + "&v=" + API_VERSION +
                     URL_OPTIONS + "&query=" + business.replace(" ", "%20") +
                     "&ll=" + userLatitude + "," + userLongitude;
+            Log.d("Icaro", " API Search Foursquare Url: " + url);
             handler.onStart();
             Request request = new Request.Builder()
                     .url(url)
                     .addHeader("X-Access-Token", apiId)
                     .build();
-            httpClient.newCall(request).enqueue(parseData(handler));
+            httpClient.newCall(request).enqueue(parseDataSearch(handler));
         } else {
             ErrorManager.notify(mContext, 1002);
             ErrorManager.logError("ApiBussines.java", "GeoCoder Error", "Lat/Lng is null");
         }
+    }
+
+    private JsonHttpResponseHandler parseDataSearch(final ApiResponseHandler handler) {
+        final Handler mainHandler = new Handler(Looper.getMainLooper());
+        return new JsonHttpResponseHandler(handler) {
+            @Override
+            public void onResponse(final Response response) throws IOException {
+                try {
+                    Gson gson = new Gson();
+                    final FoursquareSearchJSON foursquareGson = gson.fromJson(response.body().string(), FoursquareSearchJSON.class);
+
+                    for (int i = 0; i < foursquareGson.getResponse().getVenues().size(); i++) {
+                        if (foursquareGson.getResponse().getVenues().get(i).getVenueName() == null)
+                            foursquareGson.getResponse().getVenues().get(i).setVenueName("No registrado");
+
+                        if (foursquareGson.getResponse().getVenues().get(i).getContact().getPhone() == null)
+                            foursquareGson.getResponse().getVenues().get(i).getContact().setPhone("No Disponible");
+
+                        if (foursquareGson.getResponse().getVenues().get(i).getLocation().getAddress() == null)
+                            foursquareGson.getResponse().getVenues().get(i).getLocation().setAddress("No Disponible");
+
+                        if (foursquareGson.getResponse().getVenues().get(i).getLocation().getCrossStreet() == null)
+                            foursquareGson.getResponse().getVenues().get(i).getLocation().setCrossStreet("No Disponible");
+
+                        if (foursquareGson.getResponse().getVenues().get(i).getLocation().getCity() == null)
+                            foursquareGson.getResponse().getVenues().get(i).getLocation().setCity("Desconocida");
+                    }
+
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.onSuccess(foursquareGson);
+                            handler.onFinish();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("Error Api Bussiness", "Cant parse data");
+                    Log.e("Icaro Api Bussines", e.getMessage());
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.onError();
+                            handler.onFinish();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Request request, IOException e) {
+                mainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.onError();
+                        handler.onFinish();
+                    }
+                });
+            }
+        };
     }
 
     private JsonHttpResponseHandler parseData(final ApiResponseHandler handler) {

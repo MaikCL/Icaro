@@ -29,6 +29,7 @@ import java.util.List;
 import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.ApiClient.ApiBusiness;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
+import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 public class Business extends Fragment {
@@ -57,15 +58,16 @@ public class Business extends Fragment {
         phone = (TextView) rootView.findViewById(R.id.business_phone);
         poweredBy = (TextView) rootView.findViewById(R.id.business_poweredBy);
         mMapView = (MapView) rootView.findViewById(R.id.business_googlemap);
-        mToolbarCard.setTitle("Explorando Negocios");
         layout.setVisibility(View.INVISIBLE);
 
         mMapView.onCreate(mBundle);
         initMapView(rootView);
 
         if (bundle.getString("mode").equals("explore")) {
+            mToolbarCard.setTitle("Explorando Negocios");
             exploreBusiness(bundle.getString("business"), bundle.getBoolean("near"));
         } else if (bundle.getString("mode").equals("search")) {
+            mToolbarCard.setTitle("Negocios Cerca");
             searchBusiness(bundle.getString("business"), bundle.getBoolean("near"));
         }
         return rootView;
@@ -146,6 +148,64 @@ public class Business extends Fragment {
             ProgressBar.dismissLoadProgressBar();
         }
 
+        @Override
+        public void onSuccess(final FoursquareSearchJSON responseGson) {
+            int minorDistance = responseGson.getResponse().getVenues().get(0).getLocation().getDistance();
+            int minorDistanceId = 0;
+
+            for (int i = 0; i < responseGson.getResponse().getVenues().size(); i++) {
+                mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(
+                        responseGson.getResponse().getVenues().get(i).getLocation().getLatitude(),
+                        responseGson.getResponse().getVenues().get(i).getLocation().getLongitude()))
+                        .title(responseGson.getResponse().getVenues().get(i).getVenueName()));
+                if (responseGson.getResponse().getVenues().get(i).getLocation().getDistance() != null) {
+                    if (responseGson.getResponse().getVenues().get(i).getLocation().getDistance() <= minorDistance) {
+                        minorDistanceId = i;
+                        minorDistance = responseGson.getResponse().getVenues().get(i).getLocation().getDistance();
+                    }
+                }
+            }
+
+            mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    int id = Integer.parseInt(marker.getId().substring(1));
+                    name.setText(responseGson.getResponse().getVenues().get(id).getVenueName());
+                    address.setText(responseGson.getResponse().getVenues().get(id).getLocation().getAddress());
+                    secondaryAddress.setText("Referencia: " + responseGson.getResponse()
+                            .getVenues().get(id).getLocation().getCrossStreet());
+                    phone.setText("Telefono: " + responseGson.getResponse().getVenues().get(id).getContact().getPhone());
+
+                    if (responseGson.getResponse().getVenues().get(id).getLocation().getDistance() != null) {
+                        distance.setText("Distancia: " + responseGson.getResponse().getVenues().get(id).getLocation().getDistance() + " metros");
+                    } else {
+                        distance.setText("Distancia: No Disponible");
+                    }
+                    return false;
+                }
+            });
+
+            CameraPosition mapPosition = new CameraPosition.Builder()
+                    .target(new LatLng(responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getLatitude(),
+                            responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getLongitude()))
+                    .zoom(14)
+                    .bearing(0)
+                    .tilt(40)
+                    .build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(mapPosition);
+            mGoogleMap.animateCamera(cameraUpdate);
+
+            name.setText(responseGson.getResponse().getVenues().get(minorDistanceId).getVenueName());
+            address.setText(responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getAddress());
+            secondaryAddress.setText("Referencia: " + responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getCrossStreet());
+            phone.setText("Telefono: " + responseGson.getResponse().getVenues().get(minorDistanceId).getContact().getPhone());
+            distance.setText("Distancia: " + responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getDistance() + " metros");
+
+            poweredBy.setText(R.string.powered_foursquare);
+            layout.setVisibility(View.VISIBLE);
+        }
+
+        //TODO: Deprecate method onSuccess (ES: Reescribir de la misma manera que onSucess de Search con objeto Gson)
         @Override
         public void onSuccess(final List<HashMap> businessList) {
             int minorDistance = Integer.valueOf((String) businessList.get(1).get("distance"));
