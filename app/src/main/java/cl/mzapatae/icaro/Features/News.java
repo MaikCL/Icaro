@@ -4,6 +4,10 @@ package cl.mzapatae.icaro.Features;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +30,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import cl.bit01.icaro.R;
-import cl.mzapatae.icaro.ModelData.NewsObject;
+import cl.mzapatae.icaro.ModelData.Adapters.NewsAdapter;
+import cl.mzapatae.icaro.ModelData.Objects.NewsObject;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 /*
@@ -39,6 +44,8 @@ public class News extends Fragment {
     private final String urlNewsMundo = "http://www.elmostrador.cl/noticias/mundo/feed/";
     private final String urlNewsDeporte = "http://rss.emol.com/rss.asp?canal=4";
 
+    private Toolbar toolbarCard;
+    private RecyclerView recyclerView;
     private String typeNews;
 
     public News() {
@@ -49,6 +56,13 @@ public class News extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.reciclerView_reciclerList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        toolbarCard = (Toolbar) rootView.findViewById(R.id.toolbar_news);
+
         Bundle bundle = this.getArguments();
         typeNews = bundle.getString("newsType");
 
@@ -58,18 +72,23 @@ public class News extends Fragment {
 
     private void setNews(String typeNews) {
         if (typeNews.equals("destacada")) {
+            toolbarCard.setTitle("Destacado");
             new executeBackground(urlNewsDestacado).execute();
         }
         if (typeNews.equals("dia")) {
+            toolbarCard.setTitle("Actualidad");
             new executeBackground(urlNewsDia).execute();
         }
         if (typeNews.equals("chile")) {
+            toolbarCard.setTitle("Chile");
             new executeBackground(urlNewsPais).execute();
         }
         if (typeNews.equals("mundo")) {
+            toolbarCard.setTitle("Internacional");
             new executeBackground(urlNewsMundo).execute();
         }
         if (typeNews.equals("deportes")) {
+            toolbarCard.setTitle("Deportes");
             new executeBackground(urlNewsDeporte).execute();
         }
     }
@@ -133,11 +152,7 @@ public class News extends Fragment {
                             ObjNB.pubdate));
 
                     Log.d("Icaro", "==============================");
-                    Log.d("Icaro", "Item No : " + index1);
-                    Log.d("Icaro", "Title is : " + ObjNB.title);
-                    Log.d("Icaro", "Description is : " + ObjNB.description);
-                    Log.d("Icaro", "Link is : " + ObjNB.link);
-                    Log.d("Icaro", "Pubdate is : " + ObjNB.pubdate);
+                    Log.d("Icaro", "Title News is : " + ObjNB.title);
                 }
             } catch (Exception e) {
                 Log.d("Icaro", "News Error: " + e.getMessage());
@@ -149,14 +164,15 @@ public class News extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (errorCode == 0) {
-
+                RecyclerView.Adapter adapter = new NewsAdapter(getActivity(), newsData);
+                recyclerView.setAdapter(adapter);
             }
             ProgressBar.dismissLoadProgressBar();
         }
 
         private String getTagValue(String sTag, Element eElement) {
             NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-            Node nValue = (Node) nlList.item(0);
+            Node nValue = nlList.item(0);
             return nValue.getNodeValue();
         }
     }

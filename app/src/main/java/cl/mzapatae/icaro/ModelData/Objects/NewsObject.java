@@ -1,4 +1,4 @@
-package cl.mzapatae.icaro.ModelData;
+package cl.mzapatae.icaro.ModelData.Objects;
 
 /*
  * Created by mzapata on 30-04-2015.
