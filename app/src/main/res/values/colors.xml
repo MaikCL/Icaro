@@ -24,7 +24,7 @@
     <item name="toolbar.business" type="color">#2B5464</item>
     <item name="toolbar.alarm" type="color">#cd0000</item>
     <item name="toolbar.remember" type="color">#468499</item>
-    <item name="toolbar.news" type="color">#70B8A0</item>
+    <item name="toolbar.news" type="color">#53c1b9</item>
 
     <!-- Cardview Background Color -->
     <item name="cardview.background" type="color">#FAFAFA</item>
