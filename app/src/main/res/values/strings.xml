@@ -3,7 +3,8 @@
 
     <string name="app_name">Icaro</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
+
     <string name="error_inicializarMic">Error en la ejecucion del microfono.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_data">Obteniendo informacion</string>
@@ -16,6 +17,12 @@
     <string name="location_toolbar_title">Ubicacion Actual</string>
     <string name="powered_foursquare">Powered by Foursquare</string>
     <string name="title_activity_settings">Ajustes</string>
+    <string name="preference.connectTwitter">Conectarse a Twitter</string>
+    <string name="preference.help">Ayuda</string>
+    <string name="preference.aboutMe">Acerca De</string>
+    <string name="title_activity_about_me">Desarrollo</string>
+    <string name="app.versionCode">Version 1.0</string>
+    <string name="app.buildName">Icaro[Master] v1.0 build-100615</string>
 
     <!-- todo: for the next message, use this nomenclature: error.message.network = bla bla bla -->
 

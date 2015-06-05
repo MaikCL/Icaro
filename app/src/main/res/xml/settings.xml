@@ -3,20 +3,19 @@
 
     <Preference
         android:enabled="false"
-        android:key="KEY_LOGIN_TWITTER"
+        android:key="key_loginTwitter"
         android:summary="Proximamente"
-        android:title="Conectarse a Twitter" />
+        android:title="@string/preference.connectTwitter" />
 
     <Preference
-        android:enabled="false"
-        android:key="KEY_HELP"
+        android:enabled="true"
+        android:key="key_help"
         android:summary="Proximamente"
-        android:title="Ayuda" />
+        android:title="@string/preference.help" />
 
     <Preference
-        android:enabled="false"
-        android:key="KEY_ABOUTME"
-        android:summary="Proximamente"
-        android:title="Acerca De" />
+        android:enabled="true"
+        android:key="key_aboutMe"
+        android:title="@string/preference.aboutMe" />
 
 </PreferenceScreen>
