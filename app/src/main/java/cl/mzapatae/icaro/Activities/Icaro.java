@@ -56,7 +56,9 @@ public class Icaro extends ActionBarActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_settings:
-                        Toast.makeText(Icaro.this, "Proximamente...", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(Icaro.this, Settings.class);
+                        startActivityForResult(intent, 0);
                         return true;
                 }
                 return false;

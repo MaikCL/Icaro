@@ -15,6 +15,7 @@
     <string name="weather_toolbar_title">Temperatura</string>
     <string name="location_toolbar_title">Ubicacion Actual</string>
     <string name="powered_foursquare">Powered by Foursquare</string>
+    <string name="title_activity_settings">Ajustes</string>
 
     <!-- todo: for the next message, use this nomenclature: error.message.network = bla bla bla -->
 

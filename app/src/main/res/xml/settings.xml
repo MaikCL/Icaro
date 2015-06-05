@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:enabled="false"
+        android:key="KEY_LOGIN_TWITTER"
+        android:summary="Proximamente"
+        android:title="Conectarse a Twitter" />
+
+    <Preference
+        android:enabled="false"
+        android:key="KEY_HELP"
+        android:summary="Proximamente"
+        android:title="Ayuda" />
+
+    <Preference
+        android:enabled="false"
+        android:key="KEY_ABOUTME"
+        android:summary="Proximamente"
+        android:title="Acerca De" />
+
+</PreferenceScreen>
