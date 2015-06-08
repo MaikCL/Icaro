@@ -4,7 +4,6 @@ package cl.mzapatae.icaro.Fragments;
  * Created by mzapata on 05-06-2015.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -33,12 +32,10 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
 
     @Override
     public boolean onPreferenceClick(Preference preference) {
-
         if (preference.getKey().equals(ABOUT_ME)) {
-            Intent aboutMeScreen = new Intent(this.getActivity(), AboutMe.class);
-            this.getActivity().startActivity(aboutMeScreen);
+            AboutMe aboutMe = new AboutMe(getActivity());
+            aboutMe.show();
         }
-
         return false;
     }
 }
