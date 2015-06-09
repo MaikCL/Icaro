@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dip"
-    android:layout_height="250dip"
+    android:layout_height="280dip"
     android:background="@color/background_cardView"
     tools:context="cl.mzapatae.icaro.Activities.AboutMe">
 
@@ -16,7 +16,7 @@
         android:layout_marginTop="15dip">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/about_appImage"
             android:layout_width="75dip"
             android:layout_height="75dip"
             android:layout_alignParentLeft="true"
@@ -28,53 +28,55 @@
             android:id="@+id/about_appContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/about_appName"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_alignBottom="@+id/about_appImage"
+            android:layout_toEndOf="@+id/about_appImage"
+            android:layout_toRightOf="@+id/about_appImage"
             android:text="Asistente de Voz"
-            android:textSize="17dip" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/about_appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/about_appContent"
             android:layout_alignEnd="@+id/about_appContent"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/about_appContent"
-            android:layout_toRightOf="@+id/imageView"
-            android:gravity="center_horizontal"
+            android:layout_toRightOf="@+id/about_appImage"
+            android:gravity="center_vertical|center_horizontal"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textSize="33dp" />
+            android:textSize="37sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/about_developedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
+        android:layout_above="@+id/about_developerName"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="Desarrollado por"
         android:textAlignment="center"
-        android:textSize="17dp" />
+        android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/t_NombreDesarrollador"
+        android:id="@+id/about_developerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/about_relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/about_developedBy"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="Miguel A. Zapata"
-        android:textSize="19dp"
-        android:textStyle="bold"
+        android:textColor="@color/font.color.dark.text.primary"
+        android:textSize="23sp"
         android:typeface="normal" />
 
 
     <TextView
-        android:id="@+id/t_Version"
+        android:id="@+id/about_appBuild"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -84,5 +86,45 @@
         android:text="@string/app.buildName"
         android:textAlignment="center"
         android:textSize="11dp" />
+
+    <RelativeLayout
+        android:id="@+id/about_relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/about_mail"
+        android:layout_centerHorizontal="true">
+
+
+        <ImageView
+            android:id="@+id/about_twitterLogo"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/twitter_logo" />
+
+        <TextView
+            android:id="@+id/about_twitterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/about_twitterLogo"
+            android:layout_toRightOf="@+id/about_twitterLogo"
+            android:text="MZapatae_"
+            android:textSize="19sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/about_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/about_appBuild"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dip"
+        android:autoLink="email"
+        android:text="miguel.zapatae@gmail.com"
+        android:textIsSelectable="false"
+        android:textSize="19sp" />
 
 </RelativeLayout>
