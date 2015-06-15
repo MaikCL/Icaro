@@ -187,9 +187,9 @@ public class Calendar extends Fragment {
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
-        String diaSemana = sdf.format(d);
-        diaSemana = Normalizer.normalize(diaSemana, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
-        Log.d("Icaro", diaSemana);
+        String weekDay = sdf.format(d);
+        weekDay = Normalizer.normalize(weekDay, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+        Log.d("Icaro", weekDay);
 
         Map<String, Integer> map = new HashMap<>();
         map.put("lunes", 1);
@@ -216,7 +216,7 @@ public class Calendar extends Fragment {
                 || (dayEvent.compareTo("jueves") == 0) || (dayEvent.compareTo("viernes") == 0) || (dayEvent.compareTo("sabado") == 0)
                 || (dayEvent.compareTo("domingo") == 0)) {
 
-            int fecha = 7 - map.get(diaSemana) + map.get(dayEvent);
+            int fecha = 7 - map.get(weekDay) + map.get(dayEvent);
             if (fecha > 7) fecha = fecha - 7;
 
             return diaActual + fecha;
