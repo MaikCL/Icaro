@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/calendar_layout"
     android:layout_width="match_parent"
@@ -9,5 +10,103 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top"
+        android:layout_margin="13dip"
+        android:background="@color/white"
+        android:elevation="7dip">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/toolbar.calendar"
+            android:textColorPrimary="@color/white"
+            android:theme="@style/AppTheme.Toolbar"
+            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <TextView
+            android:id="@+id/calendar_textEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar_calendar"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="40dip"
+            android:text="Evento:"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/calendar_eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/calendar_textEvent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/calendar_textEvent"
+            android:layout_below="@+id/calendar_textEvent"
+            android:layout_marginRight="15dip"
+            android:text="Reunion de tesis"
+            android:textColor="@color/primaryDark2"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_eventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/calendar_eventName"
+            android:layout_alignStart="@+id/calendar_eventName"
+            android:layout_below="@+id/calendar_eventName"
+            android:layout_marginTop="38dp"
+            android:text="Fecha:"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/calendar_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_eventDate"
+            android:layout_alignStart="@+id/text_eventDate"
+            android:layout_below="@+id/text_eventDate"
+            android:text="Jueves 15 - Febrero"
+            android:textColor="@color/font.color.dark.text.primary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_eventHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/calendar_date"
+            android:layout_alignEnd="@+id/calendar_eventName"
+            android:layout_alignRight="@+id/calendar_eventName"
+            android:text="Hora:"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/calendar_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/text_eventHour"
+            android:layout_alignRight="@+id/text_eventHour"
+            android:layout_below="@+id/text_eventHour"
+            android:text="18:00"
+            android:textColor="@color/font.color.dark.text.primary"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/calendar_button_confirm"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dip"
+            android:background="@color/primary"
+            android:text="Confirmar"
+            android:theme="@style/AppTheme.Toolbar" />
+
+    </RelativeLayout>
 </FrameLayout>
