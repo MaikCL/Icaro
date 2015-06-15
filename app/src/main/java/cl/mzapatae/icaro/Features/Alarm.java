@@ -70,7 +70,6 @@ public class Alarm extends Fragment {
 
     private int hourConversion(int hour, String horarie) {
         if (horarie != null && !horarie.isEmpty()) {
-            //avaliable horarie: mañana - tarde - noche
             if ((horarie.contains("tarde") && hour + 12 <= 24) || (horarie.contains("noche") && hour + 12 >= 20))
                 return hour + 12;
         }

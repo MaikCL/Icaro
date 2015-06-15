@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ApiClient.ApiTime;
 import cl.mzapatae.icaro.Utils.GPSTracker;
@@ -80,6 +81,7 @@ public class Clock extends Fragment {
                 public void onSuccess(HashMap<String, String> dataReturned) {
                     hour.setText(dataReturned.get("hour"));
                     minutes.setText(dataReturned.get("minutes"));
+                    speak(dataReturned.get("hour"), dataReturned.get("minutes"));
                 }
 
                 @Override
@@ -115,6 +117,7 @@ public class Clock extends Fragment {
                     public void onSuccess(HashMap<String, String> dataReturned) {
                         hour.setText(dataReturned.get("hour"));
                         minutes.setText(dataReturned.get("minutes"));
+                        speak(dataReturned.get("hour"), dataReturned.get("minutes"));
                     }
 
                     @Override
@@ -126,6 +129,18 @@ public class Clock extends Fragment {
             }
         } catch (Exception e) {
             Log.e("API Error", Log.getStackTraceString(e));
+        }
+    }
+
+    private void speak(String hour, String minutes) {
+        if (minutes.equals("00")) {
+            String textToSpeech = "Son las " + hour + " en punto.";
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(textToSpeech);
+        } else {
+            String textToSpeech = "Son las " + hour + " horas con " + minutes + " minutos.";
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(textToSpeech);
         }
     }
 }

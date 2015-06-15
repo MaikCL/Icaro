@@ -27,14 +27,17 @@ import java.util.Locale;
 import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Engine.IcaroEngineLexer;
 import cl.mzapatae.icaro.Engine.IcaroEngineParser;
+import cl.mzapatae.icaro.Utils.Speaker;
 
 
 public class Icaro extends ActionBarActivity {
+    public static final int LONG_DURATION = 5000;
+    public static final int SHORT_DURATION = 1200;
+    public static Speaker speaker;
     private final int REQUEST_OK = 1;
-    private FragmentManager fragmentManager;
     private int TTS_DATA_CHECK = 1;
-
-    private Locale Español = new Locale("spa");
+    private FragmentManager fragmentManager;
+    private Locale Spanish = new Locale("spa");
     private TextView peticionUsuario;
 
     @Override
@@ -97,10 +100,24 @@ public class Icaro extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //TODO: Add If for check allow TTS, if true, launch try, false case, do nothing
 
-	    /*
-         *  Request code for speech recognizion
-	     */
+        /*try {
+            speaker = new Speaker(this);
+            speaker.allow(true);
+        } catch (Exception e) {
+            Toast.makeText(this, getString(R.string.tts_install_warning));
+        }*/
+
+        if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+            Intent install = new Intent();
+            install.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+            startActivity(install);
+        } else {
+            speaker = new Speaker(this);
+            speaker.allow(true);
+        }
+
         if (requestCode == REQUEST_OK && resultCode == RESULT_OK) {
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             peticionUsuario.setText(matches.get(0));
@@ -108,15 +125,20 @@ public class Icaro extends ActionBarActivity {
             ejecutarEngine(matches.get(0));
             Log.d("Icaro", "Frase reconocida: " + matches.get(0));
         }
-
     }
 
     private void ejecutarEngine(String peticion) {
         peticion = Normalizer.normalize(peticion, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
         Log.d("Icaro", "Frase Normalizada: " + peticion);
 
-        IcaroEngineLexer lexer = new IcaroEngineLexer(new ANTLRInputStream(peticion.toLowerCase(Español))); //locale español
+        IcaroEngineLexer lexer = new IcaroEngineLexer(new ANTLRInputStream(peticion.toLowerCase(Spanish))); //locale español
         IcaroEngineParser parser = new IcaroEngineParser(new CommonTokenStream(lexer));
         parser.icaro(fragmentManager);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        speaker.destroy();
     }
 }

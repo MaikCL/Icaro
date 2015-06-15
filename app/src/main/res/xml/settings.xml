@@ -7,6 +7,16 @@
         android:summary="Proximamente"
         android:title="@string/preference.connectTwitter" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="key_allowTTS"
+        android:title="Habilitar Voice Screen" />
+
+    <Preference
+        android:key="key_installTTS"
+        android:summary="Instalar los datos necesarios para obtener una respuesta por voz."
+        android:title="Instalar Voice Screen" />
+
     <Preference
         android:enabled="true"
         android:key="key_help"
