@@ -32,8 +32,10 @@ import java.util.List;
 import java.util.Locale;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.Utils.ErrorManager;
 import cl.mzapatae.icaro.Utils.GPSTracker;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 public class Location extends Fragment {
@@ -109,6 +111,15 @@ public class Location extends Fragment {
         super.onDestroy();
     }
 
+    private void speak(String location) {
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            String textToSpeech = "Usted se encuentra en " + location;
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(textToSpeech);
+        }
+    }
+
     private class BackgroundTask extends AsyncTask<Void, Void, Void> {
         double currentLatitude;
         double currentLongitude;
@@ -173,6 +184,8 @@ public class Location extends Fragment {
                 country.setText(locationCountry);
                 city.setText(locationCity);
                 street.setText(locationAddress);
+
+                speak(locationAddress);
 
                 layout.setVisibility(View.VISIBLE);
             } else {

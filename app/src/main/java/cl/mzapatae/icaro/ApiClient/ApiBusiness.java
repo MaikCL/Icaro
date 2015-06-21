@@ -66,7 +66,7 @@ public class ApiBusiness {
                     .url(url)
                     .addHeader("X-Access-Token", apiId)
                     .build();
-            httpClient.newCall(request).enqueue(parseData(handler));
+            httpClient.newCall(request).enqueue(parseDataExplorer(handler));
         } else {
             ErrorManager.notify(mContext, 1002);
             ErrorManager.logError("ApiBussines.java", "GeoCoder Error", "Lat/Lng is null");
@@ -159,7 +159,7 @@ public class ApiBusiness {
         };
     }
 
-    private JsonHttpResponseHandler parseData(final ApiResponseHandler handler) {
+    private JsonHttpResponseHandler parseDataExplorer(final ApiResponseHandler handler) {
         final Handler mainHandler = new Handler(Looper.getMainLooper());
         return new JsonHttpResponseHandler(handler) {
             @Override

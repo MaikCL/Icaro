@@ -27,9 +27,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiBusiness;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 public class Business extends Fragment {
@@ -201,6 +203,11 @@ public class Business extends Fragment {
             phone.setText("Telefono: " + responseGson.getResponse().getVenues().get(minorDistanceId).getContact().getPhone());
             distance.setText("Distancia: " + responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getDistance() + " metros");
 
+            speak(responseGson.getResponse().getVenues().get(minorDistanceId).getVenueName(),
+                    responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getAddress(),
+                    responseGson.getResponse().getVenues().get(minorDistanceId).getLocation().getCrossStreet(), 0);
+
+
             poweredBy.setText(R.string.powered_foursquare);
             layout.setVisibility(View.VISIBLE);
         }
@@ -253,6 +260,10 @@ public class Business extends Fragment {
             phone.setText("Telefono: " + businessList.get(minorDistanceId).get("phone"));
             distance.setText("Distancia: " + businessList.get(minorDistanceId).get("distance") + "metros");
 
+            speak((String) businessList.get(minorDistanceId).get("name"),
+                    (String) businessList.get(minorDistanceId).get("address"),
+                    (String) businessList.get(minorDistanceId).get("crossStreet"), 1);
+
             poweredBy.setText(R.string.powered_foursquare);
             layout.setVisibility(View.VISIBLE);
         }
@@ -260,6 +271,34 @@ public class Business extends Fragment {
         @Override
         public void onError() {
             Log.d("Icaro Business", "Failed to access API Service");
+        }
+
+        //Explore Mode 0 -> search ; 1 -> explore
+        private void speak(String name, String address, String crossStreet, int exploreMode) {
+            LocalStorage.initLocalStorage(getActivity());
+            if (LocalStorage.getAllowVoiceScreen()) {
+                if (exploreMode == 0) {
+                    if (crossStreet.isEmpty()) {
+                        String textToSpeech = name + " se encuentra ubicado en " + address;
+                        Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                        Icaro.speaker.speak(textToSpeech);
+                    } else {
+                        String textToSpeech = name + " se encuentra ubicado en " + address + ", cerca de " + crossStreet;
+                        Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                        Icaro.speaker.speak(textToSpeech);
+                    }
+                } else {
+                    if (crossStreet.isEmpty()) {
+                        String textToSpeech = "He encontrado" + name + ", ubicado en " + address;
+                        Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                        Icaro.speaker.speak(textToSpeech);
+                    } else {
+                        String textToSpeech = "He encontrado" + name + ", ubicado en " + address + ", cerca de " + crossStreet;
+                        Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                        Icaro.speaker.speak(textToSpeech);
+                    }
+                }
+            }
         }
     }
 }

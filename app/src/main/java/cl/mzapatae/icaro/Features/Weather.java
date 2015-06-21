@@ -17,9 +17,11 @@ import android.widget.TextView;
 import java.util.HashMap;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ApiClient.ApiWeather;
 import cl.mzapatae.icaro.Utils.GPSTracker;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 public class Weather extends Fragment {
@@ -110,6 +112,8 @@ public class Weather extends Fragment {
             city.setText(dataReturned.get("city"));
             country.setText(dataReturned.get("country"));
 
+            speak(dataReturned.get("status").toUpperCase() + " con una temperatura de " + dataReturned.get("temperature") + " grados");
+
             if (dataReturned.get("code").equals("01d") || dataReturned.get("code").equals("01n")) {   //sky clear - despejado
                 setImage(R.raw.sun);
             }
@@ -143,6 +147,15 @@ public class Weather extends Fragment {
         @Override
         public void onError() {
             Log.d("Icaro Weather", "Failed to access API Service");
+        }
+
+        private void speak(String text) {
+            LocalStorage.initLocalStorage(getActivity());
+            if (LocalStorage.getAllowVoiceScreen()) {
+                Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                Icaro.speaker.speak(text);
+
+            }
         }
     }
 }

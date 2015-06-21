@@ -30,8 +30,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ModelData.Adapters.NewsAdapter;
 import cl.mzapatae.icaro.ModelData.Objects.NewsObject;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 /*
@@ -90,6 +92,16 @@ public class News extends Fragment {
         if (typeNews.equals("deportes")) {
             toolbarCard.setTitle("Deportes");
             new executeBackground(urlNewsDeporte).execute();
+        }
+    }
+
+    private void speak() {
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            String textToSpeech = "Estas son las ultimas informaciones.";
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(textToSpeech);
+
         }
     }
 
@@ -167,6 +179,8 @@ public class News extends Fragment {
                 RecyclerView.Adapter adapter = new NewsAdapter(getActivity(), newsData);
                 recyclerView.setAdapter(adapter);
             }
+
+            speak();
             ProgressBar.dismissLoadProgressBar();
         }
 

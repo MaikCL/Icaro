@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.Utils.DeleteRememberBroadcast;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 
@@ -58,6 +59,7 @@ public class Remember extends Fragment {
                     addRemember(remember);
                 }
             });
+            speak("Este es tu recordatorio, recuerda confirmar");
         }
 
         if (mode.equals("deleteRemember")) {
@@ -90,7 +92,9 @@ public class Remember extends Fragment {
             tActionText.setVisibility(View.VISIBLE);
             tActionText.setText("Acuerdate de...");
             tRemember.setText(LocalStorage.getRemember());
+            speak("Recuerda que debes " + LocalStorage.getRemember());
             bConfirm.setVisibility(View.GONE);
+
         }
         return rootView;
     }
@@ -120,5 +124,14 @@ public class Remember extends Fragment {
 
     private void deleteRemember() {
         LocalStorage.setRemember(null);
+    }
+
+    private void speak(String text) {
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(text);
+
+        }
     }
 }
