@@ -18,6 +18,7 @@ import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ApiClient.ApiTime;
 import cl.mzapatae.icaro.Utils.GPSTracker;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
 import static cl.bit01.icaro.R.id.clock_minutes;
@@ -133,14 +134,17 @@ public class Clock extends Fragment {
     }
 
     private void speak(String hour, String minutes) {
-        if (minutes.equals("00")) {
-            String textToSpeech = "Son las " + hour + " en punto.";
-            Icaro.speaker.pause(Icaro.SHORT_DURATION);
-            Icaro.speaker.speak(textToSpeech);
-        } else {
-            String textToSpeech = "Son las " + hour + " horas con " + minutes + " minutos.";
-            Icaro.speaker.pause(Icaro.SHORT_DURATION);
-            Icaro.speaker.speak(textToSpeech);
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            if (minutes.equals("00")) {
+                String textToSpeech = "Son las " + hour + " en punto.";
+                Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                Icaro.speaker.speak(textToSpeech);
+            } else {
+                String textToSpeech = "Son las " + hour + " horas con " + minutes + " minutos.";
+                Icaro.speaker.pause(Icaro.SHORT_DURATION);
+                Icaro.speaker.speak(textToSpeech);
+            }
         }
     }
 }

@@ -13,11 +13,6 @@
         android:title="Habilitar Voice Screen" />
 
     <Preference
-        android:key="key_installTTS"
-        android:summary="Instalar los datos necesarios para obtener una respuesta por voz."
-        android:title="Instalar Voice Screen" />
-
-    <Preference
         android:enabled="true"
         android:key="key_help"
         android:summary="Proximamente"

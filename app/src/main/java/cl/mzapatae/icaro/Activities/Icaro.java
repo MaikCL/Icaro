@@ -6,8 +6,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.speech.tts.TextToSpeech;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -27,15 +27,15 @@ import java.util.Locale;
 import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Engine.IcaroEngineLexer;
 import cl.mzapatae.icaro.Engine.IcaroEngineParser;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.Speaker;
 
 
-public class Icaro extends ActionBarActivity {
+public class Icaro extends AppCompatActivity {
     public static final int LONG_DURATION = 5000;
     public static final int SHORT_DURATION = 1200;
     public static Speaker speaker;
-    private final int REQUEST_OK = 1;
-    private int TTS_DATA_CHECK = 1;
+    private final int REQUEST_OK = 0x1;
     private FragmentManager fragmentManager;
     private Locale Spanish = new Locale("spa");
     private TextView peticionUsuario;
@@ -45,7 +45,9 @@ public class Icaro extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         //Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_icaro);
-        initTextToSpeech();
+        LocalStorage.initLocalStorage(this);
+
+        if (LocalStorage.getAllowVoiceScreen()) initVoiceScreen();
 
         fragmentManager = getFragmentManager();
         peticionUsuario = (TextView) findViewById(R.id.text_peticion);
@@ -77,13 +79,23 @@ public class Icaro extends ActionBarActivity {
         });
     }
 
-    private void debugMode(String query) {
-        ejecutarEngine(query);
+    private void initVoiceScreen() {
+        try {
+            speaker = new Speaker(this);
+            speaker.allow(true);
+        } catch (Exception e) {
+            LocalStorage.setAllowVoiceScreen(false);
+            new MaterialDialog.Builder(this)
+                    .title("Error")
+                    .content("Hubo un problema iniciando Voice Screen, asi que te lo hemos desactivado. \n Vuelve a activarlo desde las opciones.")
+                    .cancelable(false)
+                    .positiveText("Aceptar")
+                    .show();
+        }
     }
 
-    private void initTextToSpeech() {
-        Intent intent = new Intent(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(intent, TTS_DATA_CHECK);
+    private void debugMode(String query) {
+        ejecutarEngine(query);
     }
 
     private void reconocimientoVoz() {
@@ -100,23 +112,6 @@ public class Icaro extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //TODO: Add If for check allow TTS, if true, launch try, false case, do nothing
-
-        /*try {
-            speaker = new Speaker(this);
-            speaker.allow(true);
-        } catch (Exception e) {
-            Toast.makeText(this, getString(R.string.tts_install_warning));
-        }*/
-
-        if (resultCode != TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
-            Intent install = new Intent();
-            install.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
-            startActivity(install);
-        } else {
-            speaker = new Speaker(this);
-            speaker.allow(true);
-        }
 
         if (requestCode == REQUEST_OK && resultCode == RESULT_OK) {
             ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -139,6 +134,6 @@ public class Icaro extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        speaker.destroy();
+        if (speaker != null) speaker.destroy();
     }
 }
