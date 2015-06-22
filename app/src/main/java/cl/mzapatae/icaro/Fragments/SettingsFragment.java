@@ -15,7 +15,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.AboutMe;
-import cl.mzapatae.icaro.Activities.Help;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.Speaker;
@@ -58,10 +57,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         //This verification is in case than Icaro Class try/catch, failed
         if (LocalStorage.getAllowVoiceScreen()) {
             ((SwitchPreference) allowTTS).setChecked(true);
-            allowTTS.setSummary("Voice Screen Encendido");
         } else {
             ((SwitchPreference) allowTTS).setChecked(false);
-            allowTTS.setSummary("Voice Screen Apagado");
         }
     }
 
@@ -71,12 +68,6 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             AboutMe aboutMe = new AboutMe(getActivity());
             aboutMe.show();
         }
-        if (preference.getKey().equals(HELP)) {
-            Intent intentAyuda = new Intent();
-            intentAyuda.setClass(getActivity(), Help.class);
-            startActivityForResult(intentAyuda, 0);
-        }
-
         return false;
     }
 
@@ -88,7 +79,6 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             if (checked) {
                 ((SwitchPreference) preference).setChecked(false);
                 LocalStorage.setAllowVoiceScreen(false);
-                allowTTS.setSummary("Voice Screen Apagado");
             } else {
                 checkTTS();
             }

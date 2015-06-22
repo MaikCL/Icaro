@@ -4,6 +4,7 @@ package cl.mzapatae.icaro.Activities;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +66,11 @@ public class Icaro extends AppCompatActivity {
                         intent.setClass(Icaro.this, Settings.class);
                         startActivityForResult(intent, 0);
                         return true;
+                    case R.id.action_help:
+                        Intent intentAyuda = new Intent();
+                        intentAyuda.setClass(Icaro.this, Help.class);
+                        startActivityForResult(intentAyuda, 0);
+                        return true;
                 }
                 return false;
             }
@@ -77,6 +83,45 @@ public class Icaro extends AppCompatActivity {
                 //debugMode("que hora es");
             }
         });
+
+        if (isFirstTime()) {
+            new MaterialDialog.Builder(this)
+                    .title("Bienvenido a Icaro Beta")
+                    .content("Gracias por descargar este pequeño proyecto personal. \n\n " +
+                            "Este asistente de voz actualmente tiene un conjunto reducido de funciones. " +
+                            "Esto debido a que es un proyecto ambicioso y de gran tamaño para solo una persona, actualmente " +
+                            "estoy dedicandome a pulir las funcionalidades ya existentes y corregir los errores, " +
+                            "para posteriormente poder agregar nuevas funcionalidades. Te agradeceria que valoraras la aplicacion y tengas paciencia con este proyecto, " +
+                            "Te recomiendo que veas la ayuda. \nGracias.")
+                    .positiveText("Ver Ayuda")
+                    .negativeText("Aceptar")
+                    .cancelable(false)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            Intent intentAyuda = new Intent();
+                            intentAyuda.setClass(Icaro.this, Help.class);
+                            startActivityForResult(intentAyuda, 0);
+                        }
+
+                        @Override
+                        public void onNegative(MaterialDialog dialog) {
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private boolean isFirstTime() {
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        boolean ranBefore = preferences.getBoolean("RanBefore", false);
+        if (!ranBefore) {
+            // first time
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("RanBefore", true);
+            editor.apply();
+        }
+        return !ranBefore;
     }
 
     private void initVoiceScreen() {

@@ -44,7 +44,19 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/text_peticion"
         android:layout_centerHorizontal="true"
-        android:background="@color/white" />
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/icaro_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:text="¿En que lo puedo ayudar?"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/abc_secondary_text_material_light" />
+    </RelativeLayout>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/mic_button"

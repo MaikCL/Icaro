@@ -10,6 +10,7 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="key_allowTTS"
+        android:summary="Permite a Icaro hablar por tu dispositivo"
         android:title="Habilitar Voice Screen" />
 
     <Preference

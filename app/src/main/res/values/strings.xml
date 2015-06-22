@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Icaro</string>
+    <string name="app_name">Icaro Beta</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Ajustes</string>
 

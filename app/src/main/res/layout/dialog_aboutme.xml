@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dip"
-    android:layout_height="280dip"
+    android:layout_height="260dip"
     android:background="@color/background_cardView"
     tools:context="cl.mzapatae.icaro.Activities.AboutMe">
 
@@ -53,8 +53,8 @@
         android:id="@+id/about_developedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/about_developerName"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:gravity="center_horizontal"
         android:text="Desarrollado por"
         android:textAlignment="center"
@@ -64,10 +64,9 @@
         android:id="@+id/about_developerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/about_relativeLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="40dp"
+        android:layout_below="@+id/about_developedBy"
         android:gravity="center"
         android:text="Miguel A. Zapata"
         android:textColor="@color/font.color.dark.text.primary"
@@ -97,11 +96,9 @@
 
         <ImageView
             android:id="@+id/about_twitterLogo"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:scaleType="fitCenter"
             android:src="@drawable/twitter_logo" />
 
         <TextView
@@ -121,6 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/about_appBuild"
         android:layout_centerHorizontal="true"
+        android:layout_margin="5dip"
         android:layout_marginBottom="10dip"
         android:autoLink="email"
         android:text="miguel.zapatae@gmail.com"
