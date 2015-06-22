@@ -25,6 +25,8 @@
     <string name="app.buildName">Version 1.0 build-100615</string>
     <string name="tts.install.warning">Para una salida por voz, necesita instalar los datos necesarios desde el apartado Ajustes</string>
     <string name="title_activity_help">Help</string>
+    <string name="calendar.toolbar.title">Nuevo Evento</string>
+    <string name="search.toolbar.title">Resultados de busqueda</string>
 
     <!-- todo: for the next message, use this nomenclature: error.message.network = bla bla bla -->
 

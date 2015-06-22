@@ -63,6 +63,8 @@ public class Calendar extends Fragment {
         eventTime = (TextView) rootView.findViewById(R.id.calendar_time);
         buttonConfirm = (Button) rootView.findViewById(R.id.calendar_button_confirm);
 
+        mToolbarCard.setTitle(getResources().getString(R.string.calendar_toolbar_title));
+
         layout.setVisibility(View.INVISIBLE);
         if (bundle != null) {
             titleEvent = bundle.getString("event");

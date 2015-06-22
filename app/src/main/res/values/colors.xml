@@ -26,6 +26,7 @@
     <item name="toolbar.remember" type="color">#468499</item>
     <item name="toolbar.news" type="color">#53c1b9</item>
     <item name="toolbar.calendar" type="color">#336644</item>
+    <item name="toolbar.search" type="color">#325176</item>
 
     <!-- Cardview Background Color -->
     <item name="cardview.background" type="color">#FAFAFA</item>

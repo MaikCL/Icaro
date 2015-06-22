@@ -132,7 +132,8 @@ public class Icaro extends AppCompatActivity {
             LocalStorage.setAllowVoiceScreen(false);
             new MaterialDialog.Builder(this)
                     .title("Error")
-                    .content("Hubo un problema iniciando Voice Screen, asi que te lo hemos desactivado. \n Vuelve a activarlo desde las opciones.")
+                    .content("Hubo un problema iniciando Voice Screen, asi que te lo hemos desactivado. \n " +
+                            "Vuelve a activarlo desde las opciones.")
                     .cancelable(false)
                     .positiveText("Aceptar")
                     .show();
