@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.AboutMe;
+import cl.mzapatae.icaro.Activities.Help;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.Speaker;
@@ -70,6 +71,12 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
             AboutMe aboutMe = new AboutMe(getActivity());
             aboutMe.show();
         }
+        if (preference.getKey().equals(HELP)) {
+            Intent intentAyuda = new Intent();
+            intentAyuda.setClass(getActivity(), Help.class);
+            startActivityForResult(intentAyuda, 0);
+        }
+
         return false;
     }
 

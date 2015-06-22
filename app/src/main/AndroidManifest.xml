@@ -40,6 +40,9 @@
         <activity
             android:name="cl.mzapatae.icaro.Activities.Settings"
             android:label="@string/title_activity_settings" />
+        <activity
+            android:name="cl.mzapatae.icaro.Activities.Help"
+            android:label="@string/title_activity_help"></activity>
     </application>
 
 </manifest>
