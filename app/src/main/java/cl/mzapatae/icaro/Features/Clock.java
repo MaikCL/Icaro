@@ -13,15 +13,14 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ApiClient.ApiTime;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.GPSTracker;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
-import static cl.bit01.icaro.R.id.clock_minutes;
 
 public class Clock extends Fragment {
     private GPSTracker gps;
@@ -42,7 +41,7 @@ public class Clock extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_clock, container, false);
             layout_clock = (RelativeLayout) rootView.findViewById(R.id.layout_clock);
             hour = (TextView) rootView.findViewById(R.id.clock_hour);
-            minutes = (TextView) rootView.findViewById(clock_minutes);
+            minutes = (TextView) rootView.findViewById(R.id.clock_minutes);
             layout_clock.setVisibility(View.INVISIBLE);
 
             gps = new GPSTracker(getActivity());
@@ -53,7 +52,7 @@ public class Clock extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_clock, container, false);
             layout_clock = (RelativeLayout) rootView.findViewById(R.id.layout_clock);
             hour = (TextView) rootView.findViewById(R.id.clock_hour);
-            minutes = (TextView) rootView.findViewById(clock_minutes);
+            minutes = (TextView) rootView.findViewById(R.id.clock_minutes);
             layout_clock.setVisibility(View.INVISIBLE);
 
             setClock(bundle.getString("city"));

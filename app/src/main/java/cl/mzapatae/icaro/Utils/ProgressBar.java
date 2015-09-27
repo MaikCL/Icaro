@@ -6,7 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 public class ProgressBar {
     private static ProgressDialog progress;

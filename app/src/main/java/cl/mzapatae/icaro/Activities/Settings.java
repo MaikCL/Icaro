@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Fragments.SettingsFragment;
+import cl.mzapatae.icaro.R;
 
 public class Settings extends ActionBarActivity {
 

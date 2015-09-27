@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
+import cl.mzapatae.icaro.R;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 
 /*
  * Created by miguelost on 21-04-15.
@@ -59,6 +61,8 @@ public class Alarm extends Fragment {
     private void setAlarmData(String hour, String minutes, String horarie) {
         tHour.setText(String.valueOf(hourConversion(Integer.parseInt(hour), horarie)));
         tMinutes.setText(String.valueOf(minuteConversion(minutes)));
+        speak("Estableceré la alarma a las " + tHour.getText() + " horas con " + tMinutes.getText() + " minutos, lo confirmas?");
+
     }
 
     private void confirmAlarm(String hour, String minutes, String horarie) {
@@ -79,5 +83,13 @@ public class Alarm extends Fragment {
     private int minuteConversion(String minutes) {
         if (minutes == null) return 0;
         else return Integer.parseInt(minutes);
+    }
+
+    private void speak(String text) {
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(text);
+        }
     }
 }

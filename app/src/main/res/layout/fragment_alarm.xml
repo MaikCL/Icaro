@@ -23,7 +23,8 @@
             android:background="@color/toolbar.alarm"
             android:textColorPrimary="@color/white"
             android:theme="@style/AppTheme.Toolbar"
-            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar" />
+            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
 
         <TextView
             android:id="@+id/alarm_twice"

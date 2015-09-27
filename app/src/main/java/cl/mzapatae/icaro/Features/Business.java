@@ -26,11 +26,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.HashMap;
 import java.util.List;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiBusiness;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
@@ -258,7 +258,7 @@ public class Business extends Fragment {
             address.setText((String) businessList.get(minorDistanceId).get("address"));
             secondaryAddress.setText("Referencia: " + businessList.get(minorDistanceId).get("crossStreet"));
             phone.setText("Telefono: " + businessList.get(minorDistanceId).get("phone"));
-            distance.setText("Distancia: " + businessList.get(minorDistanceId).get("distance") + "metros");
+            distance.setText("Distancia: " + businessList.get(minorDistanceId).get("distance") + " metros");
 
             speak((String) businessList.get(minorDistanceId).get("name"),
                     (String) businessList.get(minorDistanceId).get("address"),
@@ -278,7 +278,7 @@ public class Business extends Fragment {
             LocalStorage.initLocalStorage(getActivity());
             if (LocalStorage.getAllowVoiceScreen()) {
                 if (exploreMode == 0) {
-                    if (crossStreet.isEmpty()) {
+                    if (crossStreet.equals("No Disponible")) {
                         String textToSpeech = name + " se encuentra ubicado en " + address;
                         Icaro.speaker.pause(Icaro.SHORT_DURATION);
                         Icaro.speaker.speak(textToSpeech);
@@ -288,7 +288,7 @@ public class Business extends Fragment {
                         Icaro.speaker.speak(textToSpeech);
                     }
                 } else {
-                    if (crossStreet.isEmpty()) {
+                    if (crossStreet.equals("No Disponible")) {
                         String textToSpeech = "He encontrado" + name + ", ubicado en " + address;
                         Icaro.speaker.pause(Icaro.SHORT_DURATION);
                         Icaro.speaker.speak(textToSpeech);

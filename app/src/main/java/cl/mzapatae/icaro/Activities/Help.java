@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 public class Help extends AppCompatActivity {
 

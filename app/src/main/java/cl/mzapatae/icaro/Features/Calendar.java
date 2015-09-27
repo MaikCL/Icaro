@@ -24,7 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.Activities.Icaro;
+import cl.mzapatae.icaro.R;
+import cl.mzapatae.icaro.Utils.LocalStorage;
 
 /*
  * Created by miguelost on 29-05-15.
@@ -91,6 +93,9 @@ public class Calendar extends Fragment {
         eventDate.setText(String.valueOf(eventDay) + " de " + getMonth(eventMonth));
         eventTime.setText(String.format("%02d:%02d", eventHour, eventMinutes));
 
+        speak("Se Agendará " + titleEvent + " el día " + String.valueOf(eventDay) + " de " +
+                getMonth(eventMonth) + " a las " + String.format("%02d %02d", eventHour, eventMinutes) + " horas. Confirmalo por favor.");
+
         buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,11 +127,20 @@ public class Calendar extends Fragment {
                 // Retrieve ID for new event
                 Log.d("Icaro", "Evento Creado, ID Evento: " + uri.getLastPathSegment());
                 Toast.makeText(getActivity(), "Evento almacenado", Toast.LENGTH_LONG).show();
+                speak("El evento fue agendado satisfactoriamente");
             }
         });
 
         layout.setVisibility(View.VISIBLE);
 
+    }
+
+    private void speak(String textToSpeech) {
+        LocalStorage.initLocalStorage(getActivity());
+        if (LocalStorage.getAllowVoiceScreen()) {
+            Icaro.speaker.pause(Icaro.SHORT_DURATION);
+            Icaro.speaker.speak(textToSpeech);
+        }
     }
 
     private String getMonth(int eventMonth) {

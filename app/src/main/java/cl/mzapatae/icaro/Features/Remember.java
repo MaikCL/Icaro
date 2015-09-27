@@ -18,8 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.DeleteRememberBroadcast;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 
@@ -56,6 +56,7 @@ public class Remember extends Fragment {
             bConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     addRemember(remember);
                 }
             });

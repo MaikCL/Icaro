@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 public class ApiTime {
     private static String BASE_URL = "http://api.worldweatheronline.com/free/v1/tz.ashx?";

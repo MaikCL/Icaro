@@ -23,7 +23,8 @@
             android:background="@color/toolbar.news"
             android:textColorPrimary="@color/font.color.light"
             android:theme="@style/AppTheme.Toolbar"
-            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar" />
+            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
 
         <FrameLayout
             android:layout_width="fill_parent"

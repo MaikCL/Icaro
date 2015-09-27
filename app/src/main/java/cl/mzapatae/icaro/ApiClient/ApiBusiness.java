@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.ModelData.Gson.FoursquareSearchJSON;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.ErrorManager;
 
 public class ApiBusiness {

@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.HashMap;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 public class ApiWeather {
     private static Context mContext;

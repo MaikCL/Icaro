@@ -31,8 +31,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.ErrorManager;
 import cl.mzapatae.icaro.Utils.GPSTracker;
 import cl.mzapatae.icaro.Utils.LocalStorage;

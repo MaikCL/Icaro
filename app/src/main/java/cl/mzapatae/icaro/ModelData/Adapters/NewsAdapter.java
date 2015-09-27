@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.ModelData.Objects.NewsObject;
+import cl.mzapatae.icaro.R;
 
 /*
  * Created by MZapatae on 14-05-15.

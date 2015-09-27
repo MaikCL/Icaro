@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ApiClient.ApiResponseHandler;
 import cl.mzapatae.icaro.ApiClient.ApiWeather;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.GPSTracker;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;

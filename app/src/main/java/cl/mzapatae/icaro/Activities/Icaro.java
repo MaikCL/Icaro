@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.crashlytics.android.Crashlytics;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -25,11 +26,12 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Engine.IcaroEngineLexer;
 import cl.mzapatae.icaro.Engine.IcaroEngineParser;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.Speaker;
+import io.fabric.sdk.android.Fabric;
 
 
 public class Icaro extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class Icaro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_icaro);
         LocalStorage.initLocalStorage(this);
 

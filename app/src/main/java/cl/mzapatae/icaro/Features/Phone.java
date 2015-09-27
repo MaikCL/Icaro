@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 /**
  * A simple {@link Fragment} subclass.

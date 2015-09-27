@@ -29,10 +29,10 @@ import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.Icaro;
 import cl.mzapatae.icaro.ModelData.Adapters.NewsAdapter;
 import cl.mzapatae.icaro.ModelData.Objects.NewsObject;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.ProgressBar;
 
@@ -98,7 +98,7 @@ public class News extends Fragment {
     private void speak() {
         LocalStorage.initLocalStorage(getActivity());
         if (LocalStorage.getAllowVoiceScreen()) {
-            String textToSpeech = "Estas son las ultimas informaciones.";
+            String textToSpeech = "Estas son las últimas informaciones.";
             Icaro.speaker.pause(Icaro.SHORT_DURATION);
             Icaro.speaker.speak(textToSpeech);
 

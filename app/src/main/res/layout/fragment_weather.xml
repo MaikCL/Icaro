@@ -24,7 +24,8 @@
             android:background="@color/toolbar.weather"
             android:textColorPrimary="@color/white"
             android:theme="@style/AppTheme.Toolbar"
-            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar" />
+            app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
 
         <ImageView
             android:id="@+id/weather_icon"

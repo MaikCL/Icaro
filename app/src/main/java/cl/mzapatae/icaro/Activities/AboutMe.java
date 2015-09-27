@@ -8,7 +8,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.Window;
 import android.widget.TextView;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 
 public class AboutMe extends Dialog {
     private static Context mContext = null;

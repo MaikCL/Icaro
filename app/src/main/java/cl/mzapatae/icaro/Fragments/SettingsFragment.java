@@ -4,18 +4,21 @@ package cl.mzapatae.icaro.Fragments;
  * Created by mzapata on 05-06-2015.
  */
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import cl.bit01.icaro.R;
 import cl.mzapatae.icaro.Activities.AboutMe;
 import cl.mzapatae.icaro.Activities.Icaro;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Utils.LocalStorage;
 import cl.mzapatae.icaro.Utils.Speaker;
 
@@ -87,18 +90,29 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
     }
 
     private void checkTTS() {
-        Intent check = new Intent();
-        check.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
-        startActivityForResult(check, CHECK_CODE);
+        try {
+            Intent check = new Intent();
+            check.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+            startActivityForResult(check, CHECK_CODE);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getActivity(), "Oops! Esta funcion no es compatible con tu dispositivo o Rom instalada!", Toast.LENGTH_SHORT).show();
+            Log.e("Icaro", "Faill intent TTS " + e.fillInStackTrace());
+        }
+
+
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("Icaro", "Check Code: " + requestCode);
         if (requestCode == CHECK_CODE) {
             if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
                 LocalStorage.setAllowVoiceScreen(true);
                 allowTTS.setSummary("Voice Screen Encendido");
                 ((SwitchPreference) allowTTS).setChecked(true);
+            } else if (requestCode == 2) {
+                Log.d("Icaro", "Fallo TTS");
             } else {
                 new MaterialDialog.Builder(getActivity())
                         .title("Atencion")
