@@ -32,7 +32,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.List;
 
-import cl.bit01.icaro.R;
+import cl.mzapatae.icaro.R;
 import cl.mzapatae.icaro.Features.Alarm;
 import cl.mzapatae.icaro.Features.Business;
 import cl.mzapatae.icaro.Features.Calendar;
